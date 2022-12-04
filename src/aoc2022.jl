@@ -18,4 +18,25 @@ module AoC2022
     return max
   end
 
+  "Calories carried by each elf"
+  function caloriescarried(input)
+    calories = Vector{Int}()
+
+    current = 0
+    for line in input
+      if isempty(line)
+        push!(calories, current)
+        # @show calories
+        current = 0
+      else
+        current += parse(Int, line)
+      end
+    end
+
+    push!(calories, current)  # final elf
+
+    return calories
+
+  end
+
 end
