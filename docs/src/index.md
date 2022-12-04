@@ -4,7 +4,7 @@ CurrentModule = AoCElfTools
 
 # AoCElfTools
 
-Documentation for [AoCElfTools](https://github.com/bouffard@eecs.berkeley.edu/AoCElfTools.jl).
+Documentation for [AoCElfTools](https://github.com/pbouffard/AoCElfTools.jl).
 
 ```@index
 ```

@@ -6,11 +6,11 @@ DocMeta.setdocmeta!(AoCElfTools, :DocTestSetup, :(using AoCElfTools); recursive=
 makedocs(;
     modules=[AoCElfTools],
     authors="Patrick Bouffard and contributors",
-    repo="https://github.com/bouffard@eecs.berkeley.edu/AoCElfTools.jl/blob/{commit}{path}#{line}",
+    repo="https://github.com/pbouffard/AoCElfTools.jl/blob/{commit}{path}#{line}",
     sitename="AoCElfTools.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://bouffard@eecs.berkeley.edu.github.io/AoCElfTools.jl",
+        canonical="https://pbouffard.github.io/AoCElfTools.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -20,6 +20,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/bouffard@eecs.berkeley.edu/AoCElfTools.jl",
+    repo="github.com/pbouffard.github.io/AoCElfTools.jl",
     devbranch="main",
 )
