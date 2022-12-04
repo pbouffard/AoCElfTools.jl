@@ -1,5 +1,5 @@
 module AoCElfTools
 
-# Write your package code here.
+include("aoc2022.jl")
 
 end
