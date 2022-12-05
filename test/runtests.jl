@@ -1,6 +1,8 @@
 using AoCElfTools
 using Test
 
+import AoCElfTools.RockPaperScissors: RPS
+
 testdatadir() = joinpath(@__DIR__, "testdata")
 testfile(name) = joinpath(testdatadir(), name)
 
@@ -25,4 +27,23 @@ end
 
   aoc_result = AoCElfTools.AoC2022.caloriescarried(readlines(testfile("day01aoc.txt")))
   @test sum(sort(aoc_result, rev=true)[1:3]) == 197301
+end
+
+using AoCElfTools.RockPaperScissors
+
+@testset "Rock Paper Scissors: $a vs. $b" for ((a, b), result) in (
+  (rock, paper) => false,
+  (paper, scissors) => false,
+  (paper, rock) => true,
+)
+
+  @test (a > b) == result
+  @test (a < b) == !result
+
+end
+
+@testset "RPS: conversions" begin
+  @test RPS('A') == RPS('X') == rock
+  @test RPS('B') == RPS('Y') == paper
+  @test RPS('C') == RPS('Z') == scissors
 end
