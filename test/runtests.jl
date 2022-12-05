@@ -10,8 +10,8 @@ end
 
 # 2022
 @testset "Day1 Part 1, $inputfile, $expectedanswer" for (inputfile, expectedanswer) in (
-  "day01.txt" => 24000,
-  "day01aoc.txt" => 66487)
+  "data/sample/01.txt" => 24000,
+  "data/pbouffard/01.txt" => 66487)
 
   @test AoCElfTools.AoC2022.mostcalories(readlines(testfile(inputfile))) == expectedanswer
 
