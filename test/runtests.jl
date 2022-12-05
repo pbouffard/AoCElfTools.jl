@@ -1,6 +1,8 @@
 using AoCElfTools
 using Test
 
+import AoCElfTools.RockPaperScissors: RPS
+
 testdatadir() = joinpath(@__DIR__, "testdata")
 testfile(name) = joinpath(testdatadir(), name)
 
@@ -38,4 +40,10 @@ using AoCElfTools.RockPaperScissors
   @test (a > b) == result
   @test (a < b) == !result
 
+end
+
+@testset "RPS: conversions" begin
+  @test RPS('A') == RPS('X') == rock
+  @test RPS('B') == RPS('Y') == paper
+  @test RPS('C') == RPS('Z') == scissors
 end
