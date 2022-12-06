@@ -29,40 +29,6 @@ function parseday(::Val{1})
     end
 end
 
-"Which elf is carrying the most calories?"
-function mostcalories(input)
-    max = 0
-    current = 0
-    for line in input
-        if isempty(line)
-            current = 0
-        else
-            current += parse(Int, line)
-            current > max && (max = current)
-        end
-    end
-
-    return max
-end
-
-"Calories carried by each elf"
-function caloriescarried(input)
-    calories = Int[]
-    current = 0
-
-    for line in input
-        if isempty(line)
-            push!(calories, current)
-            current = 0
-        else
-            current += parse(Int, line)
-        end
-    end
-
-    push!(calories, current)
-    return calories
-end
-
 """
     solveday(::Val{1}) -> (Vector{Int64} -> Tuple{Int64, Int64}})
 
