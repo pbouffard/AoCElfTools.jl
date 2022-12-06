@@ -19,7 +19,7 @@ end
 
 
 """
-    userpath(user, i) -> String
+    userpath(user, i::Int) -> String
 
 Return the path to `user`'s input file for Day `i`.
 

@@ -1,4 +1,5 @@
 using AoCElfTools
+using AoCElfTools: samplepath, userpath
 using Test
 using Printf
 
@@ -9,4 +10,6 @@ function check_day(filepath)
     return parse(Int, istr), istr
 end
 
-foreach(include, readdir("2022"; join=true))
+@testset verbose=true "2022" begin
+    foreach(include, readdir("2022"; join=true))
+end
