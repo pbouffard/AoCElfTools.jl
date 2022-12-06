@@ -10,29 +10,14 @@ i, istr = check_day(@__FILE__)
     )
 
     # Test parsing the sample input
-    target = [
-        "1000",
-        "2000",
-        "3000",
-        "",
-        "4000",
-        "",
-        "5000",
-        "6000",
-        "",
-        "7000",
-        "8000",
-        "9000",
-        "",
-        "10000",
-    ]
-    sample = open(parse_input(Val(i)), joinpath(datadir, "sample", "$istr.txt"))
+    target = [6, 4, 11, 24, 10]*1000
+    sample = open(parse_input(i), joinpath(datadir, "sample", "$istr.txt"))
     @test sample == target
 
     # Test solutions
     for (dir, answer) in answers
-        input = open(parse_input(Val(i)), joinpath(datadir, dir, "$istr.txt"))
-        @test solve(Val(i))(input) == answer
+        input_path = joinpath(datadir, dir, "$istr.txt")
+        @test open(parse_solve(i), input_path) == answer
     end
 
     # Other miscellaneous tests
