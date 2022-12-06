@@ -7,8 +7,13 @@ using Printf
 function parseday end
 function solveday end
 
-# Include solution code
+# Include utility functions
 include("utils.jl")
+
+export samplepath
+export userpath
+
+# Include solution code
 foreach(include, readdir(joinpath(@__DIR__, "2022"); join=true))
 
 """
