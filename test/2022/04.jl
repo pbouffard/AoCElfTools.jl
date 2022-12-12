@@ -1,4 +1,4 @@
-i, istr = check_day(@__FILE__)
+i, istr, year = check_day(@__FILE__)
 
 @testset "Day $istr" begin
 
@@ -18,12 +18,12 @@ i, istr = check_day(@__FILE__)
         [6:6, 4:6],
         [2:6, 4:8],
     ]
-    sample = open(parse_input(i), targetpath)
+    sample = open(parse_input(i, year), targetpath)
     @test sample == target
 
     # Test solutions
     for (dir, answer) in answers
         input_path = joinpath(datadir, dir, "$istr.txt")
-        @test open(parse_solve(i), input_path) == answer
+        @test open(parse_solve(i, year), input_path) == answer
     end
 end

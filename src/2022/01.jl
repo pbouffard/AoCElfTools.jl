@@ -19,7 +19,7 @@ julia> open(parseday(Val(1)), samplepath(1))
  10000
 ```
 """
-function parseday(::Val{1})
+function parseday(::Val{1}, ::Val{2022})
     function f(io)
         elves = split(read(io, String), "\n\n")
         calories = map(elves) do elf
@@ -50,7 +50,7 @@ julia> solveday(Val(1))(input)
 (24000, 45000)
 ```
 """
-function solveday(::Val{1})
+function solveday(::Val{1}, ::Val{2022})
     function f(input)
         partialsort!(input, 1:3; rev=true)
         return (first(input), sum(input[1:3]))

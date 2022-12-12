@@ -10,13 +10,13 @@ i, istr = check_day(@__FILE__)
 
     # Test parsing the sample input
     target = [(0, 1), (1, 0), (2, 2)]
-    sample = open(parse_input(i), joinpath(datadir, "sample", "$istr.txt"))
+    sample = open(parse_input(i, year), joinpath(datadir, "sample", "$istr.txt"))
     @test sample == target
 
     # Test solutions
     for (dir, answer) in answers
         input_path = joinpath(datadir, dir, "$istr.txt")
-        @test open(parse_solve(i), input_path) == answer
+        @test open(parse_solve(i, year), input_path) == answer
     end
 
     # Test core rock-paper-scissors functions

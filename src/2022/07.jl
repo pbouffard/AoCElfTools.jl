@@ -27,7 +27,7 @@ function dirsize(dir, subdirs, contents)
 end
 
 """
-    parseday(::Val{7}) -> (IO -> Tuple{Vector{Vector{Char}}, Vector{Vector{Int64}}})
+    parseday(::Val{7}, ::Val{2022}) -> (IO -> Tuple{Vector{Vector{Char}}, Vector{Vector{Int64}}})
 
 Parse Day 7's puzzle input.
 
@@ -35,7 +35,7 @@ Parse Day 7's puzzle input.
 ```jldoctest
 ```
 """
-function parseday(::Val{7})
+function parseday(::Val{7}, ::Val{2022})
     function f(io)
         cmds = split(read(io, String), "\$ "; keepempty=false)
         dirstack = String[]
@@ -53,14 +53,14 @@ function parseday(::Val{7})
 end
 
 """
-    solveday(::Val{7}) -> ()
+    solveday(::Val{7}, ::Val{2022}) -> ()
 
 Solve Day 7's puzzle:
 - ans₁: total size of all directories under 100000
 - ans₂: message from top crates after operating CrateMover9001
 ```
 """
-function solveday(::Val{7})
+function solveday(::Val{7}, ::Val{2022})
     function f(input)
         subdirs, contents = input
         dirsizes = [dirsize(k, subdirs, contents) for k in keys(subdirs)]
