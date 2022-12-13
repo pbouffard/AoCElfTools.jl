@@ -32,8 +32,6 @@ end
 Parse Day 7's puzzle input.
 
 # Examples
-```jldoctest
-```
 """
 function parseday(::Val{7})
     function f(io)
@@ -58,7 +56,6 @@ end
 Solve Day 7's puzzle:
 - ans₁: total size of all directories under 100000
 - ans₂: message from top crates after operating CrateMover9001
-```
 """
 function solveday(::Val{7})
     function f(input)

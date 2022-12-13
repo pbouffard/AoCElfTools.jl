@@ -9,8 +9,6 @@ import ..solveday
 Parse Day 8's puzzle input.
 
 # Examples
-```jldoctest
-```
 """
 function parseday(::Val{8})
     function f(io)
@@ -79,7 +77,6 @@ end
 Solve Day 8's puzzle:
 - ans₁: number of trees visible from outside the grid
 - ans₂: maximum scenic score within the forest
-```
 """
 function solveday(::Val{8})
     function f(forest)

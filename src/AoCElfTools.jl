@@ -64,7 +64,7 @@ containing the two answers.
 
 # Examples
 ```jldoctest
-julia> input = open(parse_input(1), "test/data/sample/01.txt")
+julia> input = open(parse_input(1), samplepath(1))
 5-element Vector{Int64}:
   6000
   4000
@@ -88,7 +88,7 @@ Designed to be passed as a first argument to `open`.
 
 # Examples
 ```jldoctest
-julia> input = "test/data/sample/01.txt";
+julia> input = samplepath(1);
 
 julia> println(read(input, String))
 1000

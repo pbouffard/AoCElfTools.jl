@@ -71,7 +71,6 @@ end
 Solve Day 5's puzzle:
 - ans₁: message from top crates after operating CrateMover9000
 - ans₂: message from top crates after operating CrateMover9001
-```
 """
 function solveday(::Val{5})
     function f(input)

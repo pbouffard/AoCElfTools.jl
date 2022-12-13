@@ -173,7 +173,7 @@ Score a `round` assuming that the second element represents your desired outcome
 You get 1 point for playing rock, 2 points for playings paper, and 3 points for playing scissors, plus 3 points if you tie and 6 points if you win.
 
 # Examples
-```jldoctest; setupe = :(using AoCElfTools.Day2: score2)
+```jldoctest; setup = :(using AoCElfTools.Day2: score2)
 julia> decode(round) = (round[1] - 'A', round[3] - 'X');
 
 julia> "A Y" |> decode |> score2
@@ -201,18 +201,6 @@ Solve Day 2's puzzle:
 - ans₂: score if second column represents the outcome
 
 # Examples
-```jldoctest
-julia> input = open(parseday(Val(1)), samplepath(1))
-5-element Vector{Int64}:
-  6000
-  4000
- 11000
- 24000
- 10000
-
-julia> solveday(Val(1))(input)
-(24000, 45000)
-```
 """
 function solveday(::Val{2})
     input -> (sum(score1, input), sum(score2, input))

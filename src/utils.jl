@@ -1,3 +1,5 @@
+const DATA_DIR = joinpath(dirname(@__DIR__), "test", "data")
+
 """
     samplepath(i::Int) -> String
 
@@ -14,7 +16,7 @@ julia> samplepath(14)
 """
 function samplepath(i::Int)
     istr = @sprintf("%02d", i)
-    return joinpath("test", "data", "sample", "$istr.txt")
+    return relpath(joinpath(DATA_DIR, "sample", "$istr.txt"), pwd())
 end
 
 
@@ -34,5 +36,5 @@ julia> userpath("jbshannon", 13)
 """
 function userpath(user, i::Int)
     istr = @sprintf("%02d", i)
-    return joinpath("test", "data", user, "$istr.txt")
+    return relpath(joinpath(DATA_DIR, user, "$istr.txt"), pwd())
 end

@@ -5,8 +5,6 @@ import ..solveday
 
 """
     parseday(::Val{4}) -> (IO -> Vector{Int64})
-
-```
 """
 function parseday(::Val{4})
     function f(io)
@@ -28,7 +26,6 @@ overlaps(p) = ((a, b) = p; !isempty(a ∩ b))
 Solve Day 4's puzzle:
 - ans₁:
 - ans₂:
-```
 """
 function solveday(::Val{4})
     function f(input)

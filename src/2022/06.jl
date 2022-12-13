@@ -9,8 +9,6 @@ import ..solveday
 Parse Day 6's puzzle input.
 
 # Examples
-```jldoctest
-```
 """
 function parseday(::Val{6})
     io -> read(io, String)
