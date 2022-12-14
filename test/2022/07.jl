@@ -1,6 +1,6 @@
 i, istr = check_day(@__FILE__)
 
-@testset "Day $istr" begin
+@testset "$year Day $istr" begin
 
     # Puzzle answers
     answers = Dict(

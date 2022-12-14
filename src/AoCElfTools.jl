@@ -19,6 +19,7 @@ const years = [2022]
 # for year in years
 #   include(joinpath(@__DIR__, string(year), string(year)) * ".jl")
 # end
+include("2018/2018.jl")
 include("2022/2022.jl")
 
 """
