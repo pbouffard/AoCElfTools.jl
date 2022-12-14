@@ -33,24 +33,6 @@ Designed to be passed as a first argument to `open`.
 
 # Examples
 ```jldoctest
-julia> input = samplepath(1);
-
-julia> println(read(input, String))
-1000
-2000
-3000
-
-4000
-
-5000
-6000
-
-7000
-8000
-9000
-
-10000
-
 julia> open(parse_input(1), input)
 5-element Vector{Int64}:
   6000
@@ -95,25 +77,7 @@ Designed to be passed as a first argument to `open`.
 
 # Examples
 ```jldoctest
-julia> input = samplepath(1);
-
-julia> println(read(input, String))
-1000
-2000
-3000
-
-4000
-
-5000
-6000
-
-7000
-8000
-9000
-
-10000
-
-julia> open(parse_solve(1, 2022), input)
+julia> open(parse_solve(1, 2022), "test/2022/data/sample/01.txt")
 (24000, 45000)
 ```
 """
