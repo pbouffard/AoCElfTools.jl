@@ -6,7 +6,7 @@ const DATA_DIR = joinpath(dirname(@__DIR__), "test", "data")
 Return the path to the sample input file for Day `i`.
 
 # Examples
-```jldoctest
+```
 julia> samplepath(1)
 "test/data/sample/01.txt"
 
@@ -26,7 +26,7 @@ end
 Return the path to `user`'s input file for Day `i`.
 
 # Examples
-```jldoctest
+```
 julia> userpath("jbshannon", 1)
 "test/data/jbshannon/01.txt"
 

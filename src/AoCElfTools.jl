@@ -26,7 +26,7 @@ Designed to be passed as a first argument to `open`.
 
 # Examples
 ```jldoctest
-julia> input = "test/data/sample/01.txt";
+julia> input = samplepath(1);
 
 julia> println(read(input, String))
 1000
