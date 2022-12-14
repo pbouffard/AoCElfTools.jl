@@ -10,6 +10,7 @@ uuid = "a4c015fc-c6ff-483c-b24f-f7ea428134e9"
 version = "0.0.1"
 
 [[deps.AoCElfTools]]
+deps = ["Printf"]
 path = ".."
 uuid = "d9c9bf20-ca78-4ff2-99ab-ea0dd0f9def8"
 version = "0.1.0"
