@@ -4,7 +4,7 @@
 Return the path to the sample input file for Day `i`.
 
 # Examples
-```jldoctest
+```
 julia> samplepath(1)
 "test/data/sample/01.txt"
 
@@ -14,7 +14,7 @@ julia> samplepath(14)
 """
 function samplepath(i::Int)
     istr = @sprintf("%02d", i)
-    return joinpath("test", "data", "sample", "$istr.txt")
+    return relpath(joinpath(DATA_DIR, "sample", "$istr.txt"), pwd())
 end
 
 
@@ -24,7 +24,7 @@ end
 Return the path to `user`'s input file for Day `i`.
 
 # Examples
-```jldoctest
+```
 julia> userpath("jbshannon", 1)
 "test/data/jbshannon/01.txt"
 
@@ -34,5 +34,5 @@ julia> userpath("jbshannon", 13)
 """
 function userpath(user, i::Int)
     istr = @sprintf("%02d", i)
-    return joinpath("test", "data", user, "$istr.txt")
+    return relpath(joinpath(DATA_DIR, user, "$istr.txt"), pwd())
 end

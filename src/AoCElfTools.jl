@@ -22,17 +22,18 @@ const years = [2022]
 include("2018/2018.jl")
 include("2022/2022.jl")
 
-"""
-    parse_input(i::Int; year::Int) -> (IO -> puzzle input)
 
-Returns a function that parses Day `i`'s of Year `year`'s puzzle input into a data structure that can then
+"""
+    parse_input(i::Int) -> (IO -> puzzle input)
+
+Returns a function that parses Day `i`'s puzzle input into a data structure that can then
 be used to find a solution.
 
 Designed to be passed as a first argument to `open`.
 
 # Examples
 ```jldoctest
-julia> input = "test/data/sample/01.txt";
+julia> input = samplepath(1);
 
 julia> println(read(input, String))
 1000
@@ -50,7 +51,7 @@ julia> println(read(input, String))
 
 10000
 
-julia> open(parse_input(1, 2022), input)
+julia> open(parse_input(1), input)
 5-element Vector{Int64}:
   6000
   4000
@@ -70,7 +71,7 @@ containing the two answers.
 
 # Examples
 ```jldoctest
-julia> input = open(parse_input(1, 2022), "test/data/sample/01.txt")
+julia> input = open(parse_input(1), samplepath(1))
 5-element Vector{Int64}:
   6000
   4000
@@ -94,7 +95,7 @@ Designed to be passed as a first argument to `open`.
 
 # Examples
 ```jldoctest
-julia> input = "test/2022/data/sample/01.txt";
+julia> input = samplepath(1);
 
 julia> println(read(input, String))
 1000
