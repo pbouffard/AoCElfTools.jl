@@ -32,8 +32,8 @@ be used to find a solution.
 Designed to be passed as a first argument to `open`.
 
 # Examples
-```jldoctest
-julia> open(parse_input(1), input)
+```
+julia> open(parse_input(1, 2022), samplepath(1, 2022))
 5-element Vector{Int64}:
   6000
   4000

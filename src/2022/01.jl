@@ -9,8 +9,8 @@ import ..solveday
 Return a `Vector` containing the total number of calories each elf is carrying.
 
 # Examples
-```jldoctest
-julia> open(parseday(Val(1)), samplepath(1))
+```
+julia> open(parseday(Val(1), Val(2022)), samplepath(1, 2022))
 5-element Vector{Int64}:
   6000
   4000
@@ -37,8 +37,8 @@ Solve Day 1's puzzle:
 - ans₂: the sum of calories carried by the three elves carrying the most calories
 
 # Examples
-```jldoctest
-julia> input = open(parseday(Val(1)), samplepath(1))
+```
+julia> input = open(parseday(Val(1), Val(2022)), samplepath(1, 2022))
 5-element Vector{Int64}:
   6000
   4000
@@ -46,7 +46,7 @@ julia> input = open(parseday(Val(1)), samplepath(1))
  24000
  10000
 
-julia> solveday(Val(1))(input)
+julia> solveday(Val(1), Val(2022))(input)
 (24000, 45000)
 ```
 """

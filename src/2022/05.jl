@@ -21,24 +21,6 @@ end
     parseday(::Val{5}, ::Val{2022}) -> (IO -> Tuple{Vector{Vector{Char}}, Vector{Vector{Int64}}})
 
 Parse Day 5's puzzle input.
-
-# Examples
-```jldoctest
-julia> stacks, instructions = open(parseday(Val(5)), samplepath(5));
-
-julia> stacks
-3-element Vector{Vector{Char}}:
- ['Z', 'N']
- ['M', 'C', 'D']
- ['P']
-
-julia> instructions
-4-element Vector{Vector{Int64}}:
- [1, 2, 1]
- [3, 1, 3]
- [2, 2, 1]
- [1, 1, 2]
-```
 """
 function parseday(::Val{5}, ::Val{2022})
     function f(io)

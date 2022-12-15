@@ -8,26 +8,6 @@ import ..solveday
 
 Return a function function that parses the `IO` input into a `Vector{String}` where each
 line represent's an elf's rucksack.
-
-# Examples
-```jldoctest
-julia> println(read(samplepath(3), String))
-vJrwpWtwJgWrhcsFMMfFFhFp
-jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-PmmdzqPrVvPwwTWBwg
-wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw
-
-julia> input = open(parseday(Val(3)), samplepath(3))
-6-element Vector{String}:
- "vJrwpWtwJgWrhcsFMMfFFhFp"
- "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL"
- "PmmdzqPrVvPwwTWBwg"
- "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn"
- "ttgJtRGJQctTZtZT"
- "CrZsJsPPZsGzwwsLwLmpwMDw"
-```
 """
 function parseday(::Val{3}, ::Val{2022})
     function f(io)
@@ -45,20 +25,6 @@ Solve Day 3's puzzle.
 - ans₁: the total priority of items common to each half of one elf's pack
 - ans₂: the total priority of items common to all three elves in a group
 
-# Examples
-```jldoctest
-julia> input = open(parseday(Val(3)), samplepath(3))
-6-element Vector{String}:
- "vJrwpWtwJgWrhcsFMMfFFhFp"
- "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL"
- "PmmdzqPrVvPwwTWBwg"
- "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn"
- "ttgJtRGJQctTZtZT"
- "CrZsJsPPZsGzwwsLwLmpwMDw"
-
-julia> solveday(Val(3))(input)
-(157, 70)
-```
 """
 function solveday(::Val{3}, ::Val{2022})
     function f(input)

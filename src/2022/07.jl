@@ -30,10 +30,6 @@ end
     parseday(::Val{7}, ::Val{2022}) -> (IO -> Tuple{Vector{Vector{Char}}, Vector{Vector{Int64}}})
 
 Parse Day 7's puzzle input.
-
-# Examples
-```jldoctest
-```
 """
 function parseday(::Val{7}, ::Val{2022})
     function f(io)

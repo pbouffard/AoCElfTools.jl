@@ -1,20 +1,23 @@
-"""
-    samplepath(i::Int) -> String
+const DATA_DIR = joinpath(dirname(@__DIR__), "..","test", "data")
 
-Return the path to the sample input file for Day `i`.
+"""
+    samplepath(i::Int, year::Int) -> String
+
+Return the path to the sample input file for Day `i` of Year `year`
 
 # Examples
 ```
-julia> samplepath(1)
-"test/data/sample/01.txt"
+julia> samplepath(1, 2022)
+"test/2022/data/sample/01.txt"
 
-julia> samplepath(14)
-"test/data/sample/14.txt"
+julia> samplepath(14, 2022)
+"test/2022/data/sample/14.txt"
 ```
 """
-function samplepath(i::Int)
+function samplepath(i::Int, year::Int)
     istr = @sprintf("%02d", i)
-    return relpath(joinpath(DATA_DIR, "sample", "$istr.txt"), pwd())
+    iyear = @sprintf("%04d", year)
+    return relpath(joinpath(@__DIR__, "..", "test", iyear, "data", "sample", "$istr.txt"), pwd())
 end
 
 
