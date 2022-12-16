@@ -2,12 +2,12 @@ i, istr, year = check_day(@__FILE__)
 
 @testset "$year Day $istr" begin
 
-    # Puzzle answers
-    answers = Dict(
-        "sample" => (24000, 45000),
-        "pbouffard" => (66487, 197301),
-        "jbshannon" => (70613, 205805),
-    )
+  # Puzzle answers
+  answers = Dict(
+    "sample" => (24000, 45000),
+    "pbouffard" => (66487, 197301),
+    "jbshannon" => (70613, 205805),
+  )
 
     # Test parsing the sample input
     target = [6, 4, 11, 24, 10]*1000
@@ -20,5 +20,5 @@ i, istr, year = check_day(@__FILE__)
         @test open(parse_solve(i, year), input_path) == answer
     end
 
-    # Other miscellaneous tests
+  # Other miscellaneous tests
 end

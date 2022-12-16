@@ -2,11 +2,8 @@ i, istr = check_day(@__FILE__)
 
 @testset "$year Day $istr" begin
 
-    # Puzzle answers
-    answers = Dict(
-        "sample" => ("CMZ", "MCD"),
-        "jbshannon" => ("QMBMJDFTD", "NBTVTJNFJ"),
-    )
+  # Puzzle answers
+  answers = Dict("sample" => ("CMZ", "MCD"), "jbshannon" => ("QMBMJDFTD", "NBTVTJNFJ"))
 
     # Test parsing the sample input
     targetpath = joinpath(datadir, "sample", "$istr.txt")

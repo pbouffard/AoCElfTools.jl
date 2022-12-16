@@ -4,17 +4,17 @@ import ..parseday
 import ..solveday
 
 function parse_crates(input)
-    lines = split(input, '\n')
-    stacks = [Char[] for _ in 1:(length(first(lines))+1)÷4]
-    for line in reverse(lines), j in findall(in('A':'Z'), line)
-        push!(stacks[1+div(j-2, 4)], line[j])
-    end
-    return stacks
+  lines = split(input, '\n')
+  stacks = [Char[] for _ in 1:(length(first(lines))+1)÷4]
+  for line in reverse(lines), j in findall(in('A':'Z'), line)
+    push!(stacks[1+div(j - 2, 4)], line[j])
+  end
+  return stacks
 end
 
 function parse_instructions(input)
-    parse_line(line) = parse.(Int, match(r"move (\d+) from (\d+) to (\d+)", line).captures)
-    return [parse_line(line) for line in split(input, '\n')]
+  parse_line(line) = parse.(Int, match(r"move (\d+) from (\d+) to (\d+)", line).captures)
+  return [parse_line(line) for line in split(input, '\n')]
 end
 
 """
@@ -32,19 +32,25 @@ function parseday(::Val{5}, ::Val{2022})
 end
 
 function operate1!(stacks, instructions)
-    for (N, src, dest) in instructions
-        for _ in 1:N push!(stacks[dest], pop!(stacks[src])) end
+  for (N, src, dest) in instructions
+    for _ in 1:N
+      push!(stacks[dest], pop!(stacks[src]))
     end
-    return stacks
+  end
+  return stacks
 end
 
 function operate2!(stacks, instructions)
-    crane = Char[]
-    for (N, src, dest) in instructions
-        for _ in 1:N push!(crane, pop!(stacks[src])) end
-        for _ in 1:N push!(stacks[dest], pop!(crane)) end
+  crane = Char[]
+  for (N, src, dest) in instructions
+    for _ in 1:N
+      push!(crane, pop!(stacks[src]))
     end
-    return stacks
+    for _ in 1:N
+      push!(stacks[dest], pop!(crane))
+    end
+  end
+  return stacks
 end
 
 """

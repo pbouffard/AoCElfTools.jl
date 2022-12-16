@@ -9,17 +9,18 @@ import ..solveday
 ```
 """
 function parseday(::Val{4}, ::Val{2022})
-    function f(io)
-        map(readlines(io)) do pair
-            map(split(pair, ',')) do assignment
-                L, R = split(assignment, '-') .|> Base.Fix1(parse, Int)
-                return L:R
-            end
-        end
+  function f(io)
+    map(readlines(io)) do pair
+      map(split(pair, ',')) do assignment
+        L, R = split(assignment, '-') .|> Base.Fix1(parse, Int)
+        return L:R
+      end
     end
+  end
 end
 
-either_contains(p) = ((a, b) = p; (a ⊆ b) | (a ⊇ b))
+either_contains(p) = ((a, b) = p;
+(a ⊆ b) | (a ⊇ b))
 overlaps(p) = ((a, b) = p; !isempty(a ∩ b))
 
 """
@@ -31,11 +32,11 @@ Solve Day 4's puzzle:
 ```
 """
 function solveday(::Val{4}, ::Val{2022})
-    function f(input)
-        ans₁ = sum(either_contains, input)
-        ans₂ = sum(overlaps, input)
-        return ans₁, ans₂
-    end
+  function f(input)
+    ans₁ = sum(either_contains, input)
+    ans₂ = sum(overlaps, input)
+    return ans₁, ans₂
+  end
 end
 
 end # module

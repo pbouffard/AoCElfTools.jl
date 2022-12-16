@@ -117,7 +117,7 @@ julia> score(scissors, draw)
 6
 ```
 """
-score(me, outcome) = 1 + me + 3*outcome
+score(me, outcome) = 1 + me + 3 * outcome
 
 """
 # Examples
@@ -160,9 +160,9 @@ julia> "C Z" |> decode |> score1
 ```
 """
 function score1(round)
-    opponent, me = round
-    outcome = shoot(me, opponent)
-    return score(me, outcome)
+  opponent, me = round
+  outcome = shoot(me, opponent)
+  return score(me, outcome)
 end
 
 """
@@ -187,9 +187,9 @@ julia> "C Z" |> decode |> score2
 ```
 """
 function score2(round)
-    opponent, outcome = round
-    me = strategy(outcome, opponent)
-    return score(me, outcome)
+  opponent, outcome = round
+  me = strategy(outcome, opponent)
+  return score(me, outcome)
 end
 
 
