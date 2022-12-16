@@ -1,6 +1,8 @@
 using AoCElfTools
 using Documenter
 
+println(ENV) # TODO remove
+
 DocMeta.setdocmeta!(AoCElfTools, :DocTestSetup, :(using AoCElfTools); recursive=true)
 
 makedocs(;
@@ -20,6 +22,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/pbouffard.github.io/AoCElfTools.jl",
-    devbranch="main",
+    repo="github.com/pbouffard/AoCElfTools.jl",
+    devbranch="fix-docs",
 )
