@@ -23,8 +23,10 @@ function chronalcalibration(inputio; part=2)
 
   while !found
     if count > maxloops
+      # COV_EXCL_START
       @error "Exceeded maxloops"
       break
+      # COV_EXCL_STOP
     end
 
     if eof(inputio)
