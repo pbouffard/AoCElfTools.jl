@@ -30,9 +30,9 @@ julia> input = open(parseday(Val(3)), samplepath(3))
 ```
 """
 function parseday(::Val{3})
-    function f(io)
-        readlines(io)
-    end
+  function f(io)
+    readlines(io)
+  end
 end
 
 priority(item) = ((d, r) = divrem(item - 'A', 32); 27 + r - 26d)
@@ -61,11 +61,11 @@ julia> solveday(Val(3))(input)
 ```
 """
 function solveday(::Val{3})
-    function f(input)
-        ans₁ = sum(score ∘ (r -> Iterators.partition(r, length(r)÷2)), input)
-        ans₂ = sum(score, Iterators.partition(input, 3))
-        return ans₁, ans₂
-    end
+  function f(input)
+    ans₁ = sum(score ∘ (r -> Iterators.partition(r, length(r) ÷ 2)), input)
+    ans₂ = sum(score, Iterators.partition(input, 3))
+    return ans₁, ans₂
+  end
 end
 
 end # module Day3
