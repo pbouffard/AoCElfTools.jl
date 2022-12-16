@@ -20,6 +20,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/pbouffard.github.io/AoCElfTools.jl",
-    devbranch="main",
+    repo="github.com/pbouffard/AoCElfTools.jl",
+    devbranch="fix-docs",
 )
