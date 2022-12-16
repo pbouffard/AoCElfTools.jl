@@ -14,4 +14,4 @@ open build/index.html
 using AoCElfTools
 using Documenter
 
-makedocs(sitename="AoCElfTools")
+makedocs(; sitename="AoCElfTools")
