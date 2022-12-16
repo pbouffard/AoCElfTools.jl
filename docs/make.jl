@@ -1,6 +1,8 @@
 using AoCElfTools
 using Documenter
 
+println(ENV) # TODO remove
+
 DocMeta.setdocmeta!(AoCElfTools, :DocTestSetup, :(using AoCElfTools); recursive=true)
 
 makedocs(;
