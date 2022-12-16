@@ -15,7 +15,7 @@ jobs:
         with:
           version: '1.8'
       - uses: julia-actions/julia-buildpkg@v1
-      - name: Build and deploy
+      - uses: julia-actions/julia-docdeploy@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
