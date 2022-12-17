@@ -18,24 +18,25 @@ function samplepath(i::Int, year::Int)
     istr = @sprintf("%02d", i)
     iyear = @sprintf("%04d", year)
     return relpath(joinpath(@__DIR__, "..", "test", iyear, "data", "sample", "$istr.txt"), pwd())
-end
-
-
-"""
-    userpath(user, i::Int) -> String
-
-Return the path to `user`'s input file for Day `i`.
+  end
+  
+  
+  """
+  userpath(user, i::Int, year::Int) -> String
+  
+Return the path to `user`'s input file for Day `i` of Year `year`.
 
 # Examples
 ```
-julia> userpath("jbshannon", 1)
-"test/data/jbshannon/01.txt"
+julia> userpath("jbshannon", 1, 2022)
+"test/2022/data/jbshannon/01.txt"
 
-julia> userpath("jbshannon", 13)
-"test/data/jbshannon/13.txt"
+julia> userpath("pbouffard", 2, 2018)
+"test/2018/data/pbouffard/2.txt"
 ```
 """
-function userpath(user, i::Int)
+function userpath(user, i::Int, year::Int)
   istr = @sprintf("%02d", i)
-  return relpath(joinpath(DATA_DIR, user, "$istr.txt"), pwd())
+  iyear = @sprintf("%04d", year)
+  return relpath(joinpath(@__DIR__, "..", "test", iyear, "data", user, "$istr.txt"), pwd())
 end
