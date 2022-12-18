@@ -15,7 +15,7 @@ end
 @testset verbose = true begin
   for year in [
     2018,
-    2022,
+    # 2022,
   ]
     include(joinpath(@__DIR__, string(year), string(year)) * ".jl")
   end

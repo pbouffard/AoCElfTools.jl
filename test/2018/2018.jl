@@ -4,8 +4,9 @@ datadir = joinpath(@__DIR__, "data")
 iobuffer_from_comma_sep_string(s) = IOBuffer(join(strip.(split(s, ",")), "\n") * "\n")
 
 _YEAR = 2018
+@testset "2018" begin
 
-@testset "2018 Day 1 - samples" begin
+@testset "Day 1 - samples" begin
   # Samples as provided in problem
 
   # Part 1
@@ -36,21 +37,7 @@ _YEAR = 2018
 end
 
 
-@testset verbose = true "2018 Day 1 - puzzle" begin
-  answers = Dict("pbouffard" => (
-    425, # part 1
-    57538, # part 2
-  ))
-
-  for (contributor, answer) in answers
-    input_path = userpath(contributor, 1, _YEAR)
-    @test solveday(Val(1), Val(_YEAR))(open(input_path)) == answer
-  end
-
-
-end
-
-@testset verbose = true "2018 Day 2 - samples" begin
+@testset verbose = true "Day 2 - samples" begin
   # Samples as provided in problem
 
   # Part 1
@@ -74,18 +61,8 @@ end
 
 end
 
-@testset verbose = true "2018 Day 2 - puzzle" begin
-  answers = Dict("pbouffard" => (6225, "revtaubfniyhsgxdoajwkqilp"))
 
-  for (contributor, answer) in answers
-    input_path = userpath(contributor, 2, _YEAR)
-    @test solveday(Val(2), Val(_YEAR))(open(input_path)) == answer
-  end
-
-end
-
-
-@testset verbose = true "2018 Day 3 - samples" begin
+@testset verbose = true "Day 3 - samples" begin
   import AoCElfTools.Year2018.Day3: parseline, covmap
   # Samples as provided in problem
   @test parseline("#123 @ 3,2: 5x4") == (123, (4, 3), (8, 6))
@@ -109,23 +86,25 @@ end
 
 end
 
-@testset verbose = true "2018 Day 3 - puzzle" begin
-  answers = Dict("sample" => (4, 3), "pbouffard" => (112378, 603))
 
-  for (contributor, answer) in answers
-    input_path = userpath(contributor, 3, _YEAR)
-    @test solveday(Val(3), Val(_YEAR))(open(input_path)) == answer
+answers = Dict(
+  1 => Dict("pbouffard" => (425, 57538)),
+  2 => Dict("pbouffard" => (6225, "revtaubfniyhsgxdoajwkqilp")),
+  3 => Dict("sample" => (4, 3), "pbouffard" => (112378, 603)),
+  4 => Dict("sample" => (240, 4455), "pbouffard" => (94040, 39940)),
+  5 => Dict("sample" => (10, 4), "pbouffard" => (10180, 5668)),
+)
+
+@testset verbose = true "Day $day" for (day, answers) in answers
+  @testset verbose = true "$name" for (name, day_answers) in answers
+    input_path = userpath(name, day, _YEAR)
+    results = solveday(Val(day), Val(_YEAR))(open(input_path))
+    @testset "Part $part" for (part, answer, result) in zip((1, 2), day_answers, results)
+      @info "Day $day, $name, part $part"
+      @test result == answer
+    end
   end
-
 end
 
 
-@testset verbose = true "2018 Day 4 - puzzle" begin
-  answers = Dict("sample" => (240, 4455), "pbouffard" => (94040, 39940))
-
-  for (contributor, answer) in answers
-    input_path = userpath(contributor, 4, _YEAR)
-    @test solveday(Val(4), Val(_YEAR))(open(input_path)) == answer
-  end
-
-end
+end # 2018
