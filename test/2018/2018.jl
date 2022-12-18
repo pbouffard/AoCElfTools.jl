@@ -3,6 +3,8 @@ datadir = joinpath(@__DIR__, "data")
 
 iobuffer_from_comma_sep_string(s) = IOBuffer(join(strip.(split(s, ",")), "\n") * "\n")
 
+_YEAR = 2018
+
 @testset "2018 Day 1 - samples" begin
   # Samples as provided in problem
 
@@ -11,7 +13,7 @@ iobuffer_from_comma_sep_string(s) = IOBuffer(join(strip.(split(s, ",")), "\n") *
 
   for (input_str, correct_result) in cases
     @info "input_str = $(input_str)"
-    @test solveday(Val(1), Val(2018))(iobuffer_from_comma_sep_string(input_str); part=1) |>
+    @test solveday(Val(1), Val(_YEAR))(iobuffer_from_comma_sep_string(input_str); part=1) |>
           first == correct_result
   end
 
@@ -26,7 +28,7 @@ iobuffer_from_comma_sep_string(s) = IOBuffer(join(strip.(split(s, ",")), "\n") *
 
   for (input_str, correct_result) in cases
     @show input_str
-    @test solveday(Val(1), Val(2018))(iobuffer_from_comma_sep_string(input_str)) |> last ==
+    @test solveday(Val(1), Val(_YEAR))(iobuffer_from_comma_sep_string(input_str)) |> last ==
           correct_result
   end
 
@@ -41,8 +43,8 @@ end
   ))
 
   for (contributor, answer) in answers
-    input_path = userpath(contributor, 1, 2018)
-    @test solveday(Val(1), Val(2018))(open(input_path)) == answer
+    input_path = userpath(contributor, 1, _YEAR)
+    @test solveday(Val(1), Val(_YEAR))(open(input_path)) == answer
   end
 
 
@@ -56,8 +58,8 @@ end
 
   for (input_str, correct_result) in cases
     @info "input_str = $(input_str)"
-    @test solveday(Val(2), Val(2018))(iobuffer_from_comma_sep_string(input_str)) |> first ==
-          correct_result
+    @test solveday(Val(2), Val(_YEAR))(iobuffer_from_comma_sep_string(input_str)) |>
+          first == correct_result
   end
 
   # Part 2
@@ -65,7 +67,7 @@ end
 
   for (input_str, correct_result) in cases
     @show input_str
-    @test solveday(Val(2), Val(2018))(iobuffer_from_comma_sep_string(input_str)) |> last ==
+    @test solveday(Val(2), Val(_YEAR))(iobuffer_from_comma_sep_string(input_str)) |> last ==
           correct_result
   end
 
@@ -76,8 +78,8 @@ end
   answers = Dict("pbouffard" => (6225, "revtaubfniyhsgxdoajwkqilp"))
 
   for (contributor, answer) in answers
-    input_path = userpath(contributor, 2, 2018)
-    @test solveday(Val(2), Val(2018))(open(input_path)) == answer
+    input_path = userpath(contributor, 2, _YEAR)
+    @test solveday(Val(2), Val(_YEAR))(open(input_path)) == answer
   end
 
 end
@@ -108,14 +110,22 @@ end
 end
 
 @testset verbose = true "2018 Day 3 - puzzle" begin
-  answers = Dict(
-    "sample" => (4, 3),
-    "pbouffard" => (112378, 603),
-    )
+  answers = Dict("sample" => (4, 3), "pbouffard" => (112378, 603))
 
   for (contributor, answer) in answers
-    input_path = userpath(contributor, 3, 2018)
-    @test solveday(Val(3), Val(2018))(open(input_path)) == answer
+    input_path = userpath(contributor, 3, _YEAR)
+    @test solveday(Val(3), Val(_YEAR))(open(input_path)) == answer
+  end
+
+end
+
+
+@testset verbose = true "2018 Day 4 - puzzle" begin
+  answers = Dict("sample" => (240, 4455), "pbouffard" => (94040, 39940))
+
+  for (contributor, answer) in answers
+    input_path = userpath(contributor, 4, _YEAR)
+    @test solveday(Val(4), Val(_YEAR))(open(input_path)) == answer
   end
 
 end
