@@ -13,7 +13,7 @@ Parse Day 6's puzzle input.
 ```
 """
 function parseday(::Val{6}, ::Val{2022})
-    io -> read(io, String)
+  io -> read(io, String)
 end
 
 function countunique!(out, seen, itr)
@@ -48,11 +48,11 @@ Solve Day 6's puzzle:
 ```
 """
 function solveday(::Val{6}, ::Val{2022})
-    function f(input)
-        ans₁ = solvestr(input, 4)
-        ans₂ = solvestr(input, 14)
-        return ans₁, ans₂
-    end
+  function f(input)
+    ans₁ = solvestr(input, 4)
+    ans₂ = solvestr(input, 14)
+    return ans₁, ans₂
+  end
 end
 
 end # module

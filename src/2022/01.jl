@@ -20,13 +20,13 @@ julia> open(parseday(Val(1), Val(2022)), samplepath(1, 2022))
 ```
 """
 function parseday(::Val{1}, ::Val{2022})
-    function f(io)
-        elves = split(read(io, String), "\n\n")
-        calories = map(elves) do elf
-            sum(Base.Fix1(parse, Int), split(elf, '\n'))
-        end
-        return calories
+  function f(io)
+    elves = split(read(io, String), "\n\n")
+    calories = map(elves) do elf
+      sum(Base.Fix1(parse, Int), split(elf, '\n'))
     end
+    return calories
+  end
 end
 
 """
@@ -51,10 +51,10 @@ julia> solveday(Val(1), Val(2022))(input)
 ```
 """
 function solveday(::Val{1}, ::Val{2022})
-    function f(input)
-        partialsort!(input, 1:3; rev=true)
-        return (first(input), sum(input[1:3]))
-    end
+  function f(input)
+    partialsort!(input, 1:3; rev=true)
+    return (first(input), sum(input[1:3]))
+  end
 end
 
 end # module

@@ -23,12 +23,12 @@ end
 Parse Day 5's puzzle input.
 """
 function parseday(::Val{5}, ::Val{2022})
-    function f(io)
-        crate_raw, instr_raw = split(read(io, String), "\n\n")
-        stacks = parse_crates(crate_raw)
-        instructions = parse_instructions(instr_raw)
-        return stacks, instructions
-    end
+  function f(io)
+    crate_raw, instr_raw = split(read(io, String), "\n\n")
+    stacks = parse_crates(crate_raw)
+    instructions = parse_instructions(instr_raw)
+    return stacks, instructions
+  end
 end
 
 function operate1!(stacks, instructions)
@@ -62,12 +62,12 @@ Solve Day 5's puzzle:
 ```
 """
 function solveday(::Val{5}, ::Val{2022})
-    function f(input)
-        stacks, instructions = input
-        ans₁ = operate1!(deepcopy(stacks), instructions) .|> last |> String
-        ans₂ = operate2!(deepcopy(stacks), instructions) .|> last |> String
-        return ans₁, ans₂
-    end
+  function f(input)
+    stacks, instructions = input
+    ans₁ = operate1!(deepcopy(stacks), instructions) .|> last |> String
+    ans₂ = operate2!(deepcopy(stacks), instructions) .|> last |> String
+    return ans₁, ans₂
+  end
 end
 
 end # module

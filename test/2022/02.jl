@@ -5,16 +5,16 @@ i, istr = check_day(@__FILE__)
   # Puzzle answers
   answers = Dict("sample" => (15, 12), "jbshannon" => (14069, 12411))
 
-    # Test parsing the sample input
-    target = [(0, 1), (1, 0), (2, 2)]
-    sample = open(parse_input(i, year), joinpath(datadir, "sample", "$istr.txt"))
-    @test sample == target
+  # Test parsing the sample input
+  target = [(0, 1), (1, 0), (2, 2)]
+  sample = open(parse_input(i, year), joinpath(datadir, "sample", "$istr.txt"))
+  @test sample == target
 
-    # Test solutions
-    for (dir, answer) in answers
-        input_path = joinpath(datadir, dir, "$istr.txt")
-        @test open(parse_solve(i, year), input_path) == answer
-    end
+  # Test solutions
+  for (dir, answer) in answers
+    input_path = joinpath(datadir, dir, "$istr.txt")
+    @test open(parse_solve(i, year), input_path) == answer
+  end
 
   # Test core rock-paper-scissors functions
   rock, paper, scissors = (0, 1, 2)

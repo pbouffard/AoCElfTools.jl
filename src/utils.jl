@@ -1,4 +1,4 @@
-const DATA_DIR = joinpath(dirname(@__DIR__), "..","test", "data")
+const DATA_DIR = joinpath(dirname(@__DIR__), "..", "test", "data")
 
 """
     samplepath(i::Int, year::Int) -> String
@@ -15,13 +15,16 @@ julia> samplepath(14, 2022)
 ```
 """
 function samplepath(i::Int, year::Int)
-    istr = @sprintf("%02d", i)
-    iyear = @sprintf("%04d", year)
-    return relpath(joinpath(@__DIR__, "..", "test", iyear, "data", "sample", "$istr.txt"), pwd())
-  end
-  
-  
-  """
+  istr = @sprintf("%02d", i)
+  iyear = @sprintf("%04d", year)
+  return relpath(
+    joinpath(@__DIR__, "..", "test", iyear, "data", "sample", "$istr.txt"),
+    pwd(),
+  )
+end
+
+
+"""
   userpath(user, i::Int, year::Int) -> String
   
 Return the path to `user`'s input file for Day `i` of Year `year`.

@@ -51,7 +51,7 @@ end
 
 function solveday(::Val{3}, ::Val{2018})
   function f(io)
-    M = covmap(io) 
+    M = covmap(io)
     part1 = count(M .> 1)
     seekstart(io)
     part2 = find_nonoverlapping(M, io)

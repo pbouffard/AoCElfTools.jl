@@ -12,7 +12,7 @@ Part 1 - return final frequency
 Part 2 - return first frequency visited twice
 """
 function chronalcalibration(inputio; part=2)
-  visited=Set{Int}(0)
+  visited = Set{Int}(0)
   found = false
   current_freq = 0
   part1 = 0
@@ -54,7 +54,7 @@ function chronalcalibration(inputio; part=2)
       push!(visited, current_freq)
     end
 
-    count += 1 
+    count += 1
   end
 
   part2 = first_revisited

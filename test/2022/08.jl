@@ -14,15 +14,15 @@ i, istr = check_day(@__FILE__)
     3 5 3 9 0
   ]
 
-    targetpath = joinpath(datadir, "sample", "$istr.txt")
-    sample = open(parse_input(i, year), targetpath)
-    @test sample == target
+  targetpath = joinpath(datadir, "sample", "$istr.txt")
+  sample = open(parse_input(i, year), targetpath)
+  @test sample == target
 
-    # Test solutions
-    for (dir, answer) in answers
-        input_path = joinpath(datadir, dir, "$istr.txt")
-        @test open(parse_solve(i, year), input_path) == answer
-    end
+  # Test solutions
+  for (dir, answer) in answers
+    input_path = joinpath(datadir, dir, "$istr.txt")
+    @test open(parse_solve(i, year), input_path) == answer
+  end
 
   # Checks from AoC setup
   # Part 1

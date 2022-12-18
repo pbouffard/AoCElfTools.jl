@@ -10,9 +10,9 @@ Return a function function that parses the `IO` input into a `Vector{String}` wh
 line represent's an elf's rucksack.
 """
 function parseday(::Val{3}, ::Val{2022})
-    function f(io)
-        readlines(io)
-    end
+  function f(io)
+    readlines(io)
+  end
 end
 
 priority(item) = ((d, r) = divrem(item - 'A', 32); 27 + r - 26d)
@@ -27,11 +27,11 @@ Solve Day 3's puzzle.
 
 """
 function solveday(::Val{3}, ::Val{2022})
-    function f(input)
-        ans₁ = sum(score ∘ (r -> Iterators.partition(r, length(r)÷2)), input)
-        ans₂ = sum(score, Iterators.partition(input, 3))
-        return ans₁, ans₂
-    end
+  function f(input)
+    ans₁ = sum(score ∘ (r -> Iterators.partition(r, length(r) ÷ 2)), input)
+    ans₂ = sum(score, Iterators.partition(input, 3))
+    return ans₁, ans₂
+  end
 end
 
 end # module Day3
