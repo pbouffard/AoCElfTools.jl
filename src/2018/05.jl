@@ -36,7 +36,7 @@ function solveday(::Val{5}, ::Val{2018})
   function f(io)
     S = read(io, String) |> strip
 
-   # How many units remain after fully reacting the polymer you scanned?
+    # How many units remain after fully reacting the polymer you scanned?
     part1 = length(fullyreact(S))
 
     # What is the length of the shortest polymer you can produce by removing all units of exactly one type and fully reacting the result? 
@@ -50,7 +50,7 @@ function solveday(::Val{5}, ::Val{2018})
       @info letter, reactedlength, shortest
     end
     part2 = shortest
-    
+
     return (part1, part2)
   end
 end

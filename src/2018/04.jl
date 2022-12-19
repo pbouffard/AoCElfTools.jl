@@ -16,7 +16,7 @@ function readrecord(io)
 
   state = init
   # guard ID to vector of Ints indicating sleepiness for given minute
-  G = Dict{Int,Array{Int,1}}() 
+  G = Dict{Int,Array{Int,1}}()
   g = 0 # id of guard currently being processed
   tsleep = 1
   tshiftstart = 0
@@ -59,7 +59,7 @@ function solveday(::Val{4}, ::Val{2018})
     st = argmax(G[sg]) - 1
     @debug "Sleepiest guard is #$(sg), sleepiest at minute $(st)"
     part1 = sg * st
-    
+
     gmfa = 0 # Guard most frequently asleep (on any given minute)
     fam = 0 # What minute gmfa is most frequently asleep on
     ma = 0 # minutes asleep
