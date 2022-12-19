@@ -7,6 +7,7 @@ version = "0.1.0"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 ImageView = "86fae568-95e7-573e-a6b2-d8a6b900c9ef"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
 
 [compat]
 julia = "1.8"
