@@ -3,7 +3,7 @@ module Day6
 import ...parseday
 import ...solveday
 
-using ImageView
+# using ImageView # disable so CI won't fail
 using ProgressMeter
 
 """
@@ -102,7 +102,7 @@ function day6a(P)
 
   M = closestpoints(P)
   (nrows, ncols) = size(M)
-  imshow(M)
+  # imshow(M)
 
   # Determine largest area
   areas = []
