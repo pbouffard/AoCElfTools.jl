@@ -1,6 +1,6 @@
 i, istr, year = check_day(@__FILE__)
 
-@testset "$year Day $istr" begin
+@testset verbose = true "$year Day $istr" begin
 
   # Puzzle answers
   answers = Dict("sample" => (2, 4), "jbshannon" => (433, 852))
