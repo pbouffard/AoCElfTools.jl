@@ -184,7 +184,7 @@ function solveday(::Val{7}, ::Val{2018})
     (part2, steps) = process!(g2, 5)
     @debug steps
     result = (part1, part2)
-    @show result
+    @debug result
     return result
   end
 end

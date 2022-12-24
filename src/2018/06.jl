@@ -38,7 +38,7 @@ function closest(q, P)
 end
 
 function printmap(M)
-  @show size(M, 1), size(M, 2)
+  @debug size(M, 1), size(M, 2)
   for r ∈ 1:size(M, 1)
     for c ∈ 1:size(M, 2)
       print(Char(96 + M[r, c]))
@@ -121,7 +121,8 @@ function day6a(P)
     end
 
   end
-  @info "Areas:", sort!(areas)
+  sort!(areas)
+  @debug "Areas:", areas
 
   #printmap(M)
   # Remove infinite areas - if a given point's footprint does not include edge cells then it is finite

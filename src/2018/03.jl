@@ -42,7 +42,7 @@ function find_nonoverlapping(M, io)
   for L in eachline(io)
     id, (x1, y1), (x2, y2) = parseline(L)
     if all(M[x1:x2, y1:y2] .== 1)
-      @info id, ((x1, y1), (x2, y2))
+      @debug id, ((x1, y1), (x2, y2))
       return id
     end
   end

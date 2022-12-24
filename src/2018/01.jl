@@ -35,12 +35,10 @@ function chronalcalibration(inputio; part=2)
       end
       seekstart(inputio)
       looped_once = true
-      # @show count, length(visited)
     end
 
     line = readline(inputio)
     current_freq += parse(Int, line)
-    # @show line, current_freq, visited
 
     if !looped_once
       part1 = current_freq
@@ -48,7 +46,7 @@ function chronalcalibration(inputio; part=2)
 
     if current_freq in visited
       first_revisited = current_freq
-      @info "Revisited $(first_revisited) in $(count) loops"
+      @debug "Revisited $(first_revisited) in $(count) loops"
       found = true
     else
       push!(visited, current_freq)

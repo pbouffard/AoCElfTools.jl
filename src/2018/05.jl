@@ -47,7 +47,7 @@ function solveday(::Val{5}, ::Val{2018})
       Srem = replace(Srem, letter => "")
       reactedlength = length(fullyreact(Srem))
       shortest = min(reactedlength, shortest)
-      @info letter, reactedlength, shortest
+      @debug letter, reactedlength, shortest
     end
     part2 = shortest
 
