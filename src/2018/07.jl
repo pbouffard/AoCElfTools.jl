@@ -62,7 +62,7 @@ function process!(g)
   return join(steps, "")
 end
 
-processingtime(c::Char, extratime) =Int(c - 64 + extratime)
+processingtime(c::Char, extratime) = Int(c - 64 + extratime)
 
 verttostep(g, v) = get_prop(g, v, :name)
 steptovert(g, step) = g[step, :name]
@@ -125,7 +125,7 @@ function process!(g, nworkers; extratime=60)
   t = -1
   prog = Progress(N)
   while (n = length(steps)) < N
-  # while length(steps) < N
+    # while length(steps) < N
     update!(prog, n)
     t += 1
     @debug "-----------------"

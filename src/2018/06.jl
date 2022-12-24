@@ -50,14 +50,14 @@ function printmap(M)
 end
 
 function closestpoints(P)
-    # Find convex hull of points to properly size array
-    hull = L1convhull(values(P))
-    # ^ first is top-left, last is bottom-right
-    nrows = hull[2][1] + 1
-    ncols = hull[2][2] + 1
-    rs = 1:nrows
-    cs = 1:ncols
-    M = zeros(Int, maximum(rs), maximum(cs))
+  # Find convex hull of points to properly size array
+  hull = L1convhull(values(P))
+  # ^ first is top-left, last is bottom-right
+  nrows = hull[2][1] + 1
+  ncols = hull[2][2] + 1
+  rs = 1:nrows
+  cs = 1:ncols
+  M = zeros(Int, maximum(rs), maximum(cs))
 
   # Populate array
   for (pkey, (r, c)) ∈ P
@@ -130,29 +130,29 @@ function day6a(P)
 end
 
 function day6b(P)
-	# input data has coordinates all 0 ≤ P ≤ 1000 so if we don't need to check negative coordinates then at worst we need to check 11000² = 121,000,000 coordinates. So this could be done in a reasonable amount of RAM naively.... Actually, this is just O(1) RAM since we just need to check each cell individually. A search algorithm might finish sooner but then we would have to keep track of things.
-	#rmax, cmax = maximum(first.(values(P))), maximum(l#ast.(values(P)))
-	rs = 1:11_000 #rmax
-	cs = 1:11_000 #cmax
-	# @info rmax, cmax
-	regionsize = 0
-	dmax = 10_000
-	@showprogress for r ∈ rs
-		for c ∈ cs
-			totdist = 0
-			for (pkey, p) ∈ P
-				totdist += manhattandist((r, c), p)
-				if totdist > dmax
-					break
-				end
-			end
-			if totdist < dmax
-				regionsize += 1
-			end
-		end
-	end
-	return regionsize
-	# ^ the above works but is obviously pretty janky and suboptimal time-wise (it takes about 2 sec OMM after first run). Well, at least for this input file. The region is only 0.03% of the size of the space checked so most of the work is done in vast empty regions.
+  # input data has coordinates all 0 ≤ P ≤ 1000 so if we don't need to check negative coordinates then at worst we need to check 11000² = 121,000,000 coordinates. So this could be done in a reasonable amount of RAM naively.... Actually, this is just O(1) RAM since we just need to check each cell individually. A search algorithm might finish sooner but then we would have to keep track of things.
+  #rmax, cmax = maximum(first.(values(P))), maximum(l#ast.(values(P)))
+  rs = 1:11_000 #rmax
+  cs = 1:11_000 #cmax
+  # @info rmax, cmax
+  regionsize = 0
+  dmax = 10_000
+  @showprogress for r ∈ rs
+    for c ∈ cs
+      totdist = 0
+      for (pkey, p) ∈ P
+        totdist += manhattandist((r, c), p)
+        if totdist > dmax
+          break
+        end
+      end
+      if totdist < dmax
+        regionsize += 1
+      end
+    end
+  end
+  return regionsize
+  # ^ the above works but is obviously pretty janky and suboptimal time-wise (it takes about 2 sec OMM after first run). Well, at least for this input file. The region is only 0.03% of the size of the space checked so most of the work is done in vast empty regions.
 end
 
 function parseday(::Val{6}, ::Val{2018})
