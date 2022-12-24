@@ -92,14 +92,14 @@ _YEAR = 2018
 
   answers = Dict(
     7 => Dict(
-      "sample" => ("CABDFE", 15),
+      # "sample" => ("CABDFE", 15),
       "pbouffard" => ("BITRAQVSGUWKXYHMZPOCDLJNFE", 869),
     ),
     6 => Dict(
       "sample" => (17, nothing), # too much of a PITA to modify to allow distance threshold to be passed
       "pbouffard" => (4171, 39545),
     ),
-    5 => Dict("sample" => (10, 4), "pbouffard" => (10180, 5668)),
+    # 5 => Dict("sample" => (10, 4), "pbouffard" => (10180, 5668)),
     4 => Dict("sample" => (240, 4455), "pbouffard" => (94040, 39940)),
     3 => Dict("sample" => (4, 3), "pbouffard" => (112378, 603)),
     2 => Dict("pbouffard" => (6225, "revtaubfniyhsgxdoajwkqilp")),

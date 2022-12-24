@@ -6,6 +6,7 @@ import ...solveday
 using MetaGraphs
 using Graphs
 using GraphPlot
+using ProgressMeter
 
 "Remove any vertices with no incoming or outgoing edges"
 function cull_graph(g)
@@ -19,31 +20,31 @@ end
 
 "Since the vertices remain in alphabetical order whichever is the first with no incoming edges is the next step to be performed"
 function next_ready(g)
+  next = []
   for step in 'A':'Z'
     try
       v = g[step, :name]
       @debug step, v, indegree(g, v)
-      if indegree(g, v) == 0
-        return v
+      if indegree(g, v) == 0 && !get_prop(g, v, :processing)
+        push!(next, v)
       end
     catch e
       # handle case if vertex wasn't found
       @debug "caught on $step"
     end
   end
-  # There now should be only 1 vertex remaining:
-  @assert nv(g) == 1
-  return 1
+  return next
 end
 
 
 function step!(g)
-  step = next_ready(g)
+  step = next_ready(g)[1]
   vname = get_prop(g, step, :name)
   rem_vertex!(g, step)
   return vname
 end
 
+"Process as per part 1"
 function process!(g)
   steps = []
   while nv(g) > 0
@@ -51,14 +52,90 @@ function process!(g)
     try
       step = step!(g)
       push!(steps, step)
-      @info steps
+      @debug steps
     catch e
-      @info e
+      @debug e
       break
     end
   end
-  @show g
+  @debug g
   return join(steps, "")
+end
+
+processingtime(c::Char, extratime) =Int(c - 64 + extratime)
+
+verttostep(g, v) = get_prop(g, v, :name)
+steptovert(g, step) = g[step, :name]
+
+"Run one processing step, "
+function step!(g, workers, extratime)
+  completed = Vector{Char}()
+  ready = Vector{Int}()
+  work_left = 0
+  # process
+  @debug workers
+  for i in 1:length(workers)
+    worker = Ref(workers, i)
+    @debug "Processing worker $(worker[])..."
+    step, worker_time_left = worker[]
+    @debug step, worker_time_left
+    if step == '\0'
+      continue
+    end
+    if worker_time_left == 1
+      @debug "finished"
+      push!(completed, step)
+      rem_vertex!(g, steptovert(g, step))
+      worker[] = ['\0', 0]
+    else
+      worker[] = [step, worker_time_left - 1]
+    end
+  end
+
+  next_steps = next_ready(g)
+  append!(ready, next_steps)
+  sort!(ready; rev=true)
+  @debug ready
+
+  for i in 1:length(workers)
+    worker = Ref(workers, i)
+    if length(ready) == 0
+      break
+    else
+      if last(worker[]) == 0
+        vnew = pop!(ready)
+        set_prop!(g, vnew, :processing, true)
+        newstep = get_prop(g, vnew, :name) #verttostep(g, vnew)
+        @debug "Assigning $vnew ($newstep) to worker $worker ($(worker[]))"
+        worker[] = [newstep, processingtime(newstep, extratime)]
+        @debug worker[]
+        @debug workers
+      end
+    end
+  end
+
+  return completed
+end
+
+"Process as per part 2, with given number of workers"
+function process!(g, nworkers; extratime=60)
+  steps = Vector{Char}()
+  workers = fill(['\0', 0], nworkers)
+  N = nv(g)
+  t = -1
+  prog = Progress(N)
+  while (n = length(steps)) < N
+  # while length(steps) < N
+    update!(prog, n)
+    t += 1
+    @debug "-----------------"
+    @debug t, steps
+    completed = step!(g, workers, extratime)
+    append!(steps, sort(completed))
+    @debug steps
+  end
+  @debug g
+  return t, join(steps, "")
 end
 
 function dependants(g, step_name)
@@ -80,7 +157,8 @@ function parseday(::Val{7}, ::Val{2018})
   function p(io)
     g = MetaDiGraph()
     for c in 'A':'Z'
-      add_vertex!(g, :name, c)
+      @assert add_vertex!(g, :name, c)
+      set_prop!(g, nv(g), :processing, false)
     end
     set_indexing_prop!(g, :name)
 
@@ -93,7 +171,7 @@ function parseday(::Val{7}, ::Val{2018})
     end
 
     g = cull_graph(g)
-    @show g
+    @debug g
     return g
   end
 end
@@ -103,8 +181,11 @@ function solveday(::Val{7}, ::Val{2018})
     g = parseday(Val(7), Val(2018))(io)
     g2 = deepcopy(g)
     part1 = process!(g)
-    part2 = nothing
-    return (part1, part2)
+    (part2, steps) = process!(g2, 5)
+    @debug steps
+    result = (part1, part2)
+    @show result
+    return result
   end
 end
 
