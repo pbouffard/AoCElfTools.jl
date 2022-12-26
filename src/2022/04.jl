@@ -4,9 +4,11 @@ import ..parseday
 import ..solveday
 
 """
-    parseday(::Val{4}) -> (IO -> Vector{Int64})
+    parseday(::Val{4}, ::Val{2022}) -> (IO -> Vector{Int64})
+
+```
 """
-function parseday(::Val{4})
+function parseday(::Val{4}, ::Val{2022})
   function f(io)
     map(readlines(io)) do pair
       map(split(pair, ',')) do assignment
@@ -27,8 +29,9 @@ overlaps(p) = ((a, b) = p; !isempty(a ∩ b))
 Solve Day 4's puzzle:
 - ans₁:
 - ans₂:
+```
 """
-function solveday(::Val{4})
+function solveday(::Val{4}, ::Val{2022})
   function f(input)
     ans₁ = sum(either_contains, input)
     ans₂ = sum(overlaps, input)

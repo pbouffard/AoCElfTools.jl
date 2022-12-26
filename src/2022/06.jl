@@ -4,13 +4,15 @@ import ..parseday
 import ..solveday
 
 """
-    parseday(::Val{6}) -> (IO -> Tuple{Vector{Vector{Char}}, Vector{Vector{Int64}}})
+    parseday(::Val{6}, ::Val{2022}) -> (IO -> Tuple{Vector{Vector{Char}}, Vector{Vector{Int64}}})
 
 Parse Day 6's puzzle input.
 
 # Examples
+```jldoctest
+```
 """
-function parseday(::Val{6})
+function parseday(::Val{6}, ::Val{2022})
   io -> read(io, String)
 end
 
@@ -38,14 +40,14 @@ function solvestr(data, packet_length)
 end
 
 """
-    solveday(::Val{6}) -> ()
+    solveday(::Val{6}, ::Val{2022}) -> ()
 
 Solve Day 6's puzzle:
 - ans₁: message from top crates after operating CrateMover9000
 - ans₂: message from top crates after operating CrateMover9001
 ```
 """
-function solveday(::Val{6})
+function solveday(::Val{6}, ::Val{2022})
   function f(input)
     ans₁ = solvestr(input, 4)
     ans₂ = solvestr(input, 14)

@@ -4,13 +4,15 @@ import ..parseday
 import ..solveday
 
 """
-    parseday(::Val{8}) -> (IO -> Tuple{Vector{Vector{Char}}, Vector{Vector{Int64}}})
+    parseday(::Val{8}, ::Val{2022}) -> (IO -> Tuple{Vector{Vector{Char}}, Vector{Vector{Int64}}})
 
 Parse Day 8's puzzle input.
 
 # Examples
+```jldoctest
+```
 """
-function parseday(::Val{8})
+function parseday(::Val{8}, ::Val{2022})
   function f(io)
     lines = readlines(io)
     I, J = length(lines), length(first(lines))
@@ -72,13 +74,14 @@ function checkscenery(forest)
 end
 
 """
-    solveday(::Val{8}) -> ()
+    solveday(::Val{8}, ::Val{2022}) -> ()
 
 Solve Day 8's puzzle:
 - ans₁: number of trees visible from outside the grid
 - ans₂: maximum scenic score within the forest
+```
 """
-function solveday(::Val{8})
+function solveday(::Val{8}, ::Val{2022})
   function f(forest)
     trees = eachindex(forest)
     ans₁ = count(checkvisibility(forest), trees)

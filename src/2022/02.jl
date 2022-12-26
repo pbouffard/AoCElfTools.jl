@@ -10,7 +10,7 @@ decode(round) = (round[1] - 'A', round[3] - 'X')
 
 Return a function that parses an `IO` stream of input into a `Vector{Tuple{Int64, Int64}}` where each element represents the strategy for a round.
 """
-function parseday(::Val{2})
+function parseday(::Val{2}, ::Val{2022})
   function f(io)
     return map(decode, readlines(io))
   end
@@ -202,7 +202,7 @@ Solve Day 2's puzzle:
 
 # Examples
 """
-function solveday(::Val{2})
+function solveday(::Val{2}, ::Val{2022})
   input -> (sum(score1, input), sum(score2, input))
 end
 
