@@ -9,6 +9,12 @@ jobs:
   TestCLI:
    runs-on: ubuntu-latest
    steps:
+    - uses: actions/checkout@v2
+    - uses: julia-actions/setup-julia@latest
+      with:
+        version: '1.8'
+    - uses: julia-actions/cache@v1
+    - uses: julia-actions/julia-buildpkg@v1
     - name: Run via CLI - usage message
       run: ./aoc.jl -h
     - name: Run via CLI - all puzzles, all years
