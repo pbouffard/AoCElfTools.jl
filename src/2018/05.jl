@@ -32,6 +32,10 @@ function fullyreact(S)
   return S
 end
 
+function parseday(::Val{5}, ::Val{2018})
+  f(io) = io
+end
+
 function solveday(::Val{5}, ::Val{2018})
   function f(io)
     S = read(io, String) |> strip
@@ -56,3 +60,5 @@ function solveday(::Val{5}, ::Val{2018})
 end
 
 end # module
+
+using .Day5

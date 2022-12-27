@@ -1,7 +1,7 @@
 module Day7
 
-import ..parseday
-import ..solveday
+import ...parseday
+import ...solveday
 
 _cd(dir, dirstack) = dir == ".." ? pop!(dirstack) : push!(dirstack, dir)
 

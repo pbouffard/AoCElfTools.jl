@@ -13,10 +13,7 @@ function check_day(filepath)
 end
 
 @testset verbose = true begin
-  for year in [
-    2018,
-    2022,
-  ]
+  for year in yearsavailable()
     include(joinpath(@__DIR__, string(year), string(year)) * ".jl")
   end
 end

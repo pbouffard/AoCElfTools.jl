@@ -1,7 +1,7 @@
 module Day8
 
-import ..parseday
-import ..solveday
+import ...parseday
+import ...solveday
 
 """
     parseday(::Val{8}, ::Val{2022}) -> (IO -> Tuple{Vector{Vector{Char}}, Vector{Vector{Int64}}})

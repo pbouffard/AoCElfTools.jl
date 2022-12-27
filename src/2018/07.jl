@@ -177,8 +177,8 @@ function parseday(::Val{7}, ::Val{2018})
 end
 
 function solveday(::Val{7}, ::Val{2018})
-  function f(io)
-    g = parseday(Val(7), Val(2018))(io)
+  function f(g)
+    # g = parseday(Val(7), Val(2018))(io)
     g2 = deepcopy(g)
     part1 = process!(g)
     (part2, steps) = process!(g2, 5)
@@ -190,3 +190,5 @@ function solveday(::Val{7}, ::Val{2018})
 end
 
 end # module
+
+using .Day7

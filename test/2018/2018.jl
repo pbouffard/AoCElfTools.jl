@@ -109,7 +109,7 @@ _YEAR = 2018
   @testset verbose = true "Day $day" for (day, answers) in answers
     @testset verbose = true "$name" for (name, day_answers) in answers
       input_path = userpath(name, day, _YEAR)
-      results = solveday(Val(day), Val(_YEAR))(open(input_path))
+      results = parse_solve(day, _YEAR)(open(input_path))
       @testset "Part $part" for (part, answer, result) in zip((1, 2), day_answers, results)
         @debug "Day $day, $name, part $part"
         if !isnothing(answer)

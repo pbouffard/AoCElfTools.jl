@@ -171,8 +171,8 @@ end
 
 
 function solveday(::Val{6}, ::Val{2018})
-  function f(io)
-    P = parseday(Val(6), Val(2018))(io)
+  function f(P)
+    # P = parseday(Val(6), Val(2018))(io)
     part1 = day6a(P)
     part2 = day6b(P)
     return (part1, part2)
@@ -180,3 +180,5 @@ function solveday(::Val{6}, ::Val{2018})
 end
 
 end # module
+
+using .Day6

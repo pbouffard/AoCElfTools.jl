@@ -20,7 +20,7 @@ i, istr = check_day(@__FILE__)
   rock, paper, scissors = (0, 1, 2)
   lose, draw, win = (0, 1, 2)
 
-  let f = AoCElfTools.Day2.shoot
+  let f = AoCElfTools.Year2022.Day2.shoot
     @test f(rock, rock) == draw
     @test f(rock, paper) == lose
     @test f(rock, scissors) == win
@@ -32,7 +32,7 @@ i, istr = check_day(@__FILE__)
     @test f(scissors, scissors) == draw
   end
 
-  let f = AoCElfTools.Day2.strategy
+  let f = AoCElfTools.Year2022.Day2.strategy
     @test f(win, rock) == paper
     @test f(win, paper) == scissors
     @test f(win, scissors) == rock
@@ -45,13 +45,13 @@ i, istr = check_day(@__FILE__)
   end
 
   # Scoring the example rounds
-  let score = AoCElfTools.Day2.score1 ∘ AoCElfTools.Day2.decode
+  let score = AoCElfTools.Year2022.Day2.score1 ∘ AoCElfTools.Year2022.Day2.decode
     @test score("A Y") == 8
     @test score("B X") == 1
     @test score("C Z") == 6
   end
 
-  let score = AoCElfTools.Day2.score2 ∘ AoCElfTools.Day2.decode
+  let score = AoCElfTools.Year2022.Day2.score2 ∘ AoCElfTools.Year2022.Day2.decode
     @test score("A Y") == 4
     @test score("B X") == 1
     @test score("C Z") == 7

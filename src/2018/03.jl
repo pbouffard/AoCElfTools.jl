@@ -49,6 +49,10 @@ function find_nonoverlapping(M, io)
   @error "Didn't find a non-overlapping claim!"
 end
 
+function parseday(::Val{3}, ::Val{2018})
+  f(io) = io
+end
+
 function solveday(::Val{3}, ::Val{2018})
   function f(io)
     M = covmap(io)
@@ -60,3 +64,5 @@ function solveday(::Val{3}, ::Val{2018})
 end
 
 end # module
+
+using .Day3

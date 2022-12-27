@@ -1,7 +1,7 @@
 module Day2
 
-import ..parseday
-import ..solveday
+import ...parseday
+import ...solveday
 
 decode(round) = (round[1] - 'A', round[3] - 'X')
 
@@ -31,7 +31,7 @@ Determine the outcome of a round given a strategy for `me` and my `opponent`.
     - 2 = win
 
 # Examples
-```jldoctest; setup = :(using AoCElfTools.Day2: shoot)
+```jldoctest; setup = :(using AoCElfTools.Year2022.Day2: shoot)
 julia> rock, paper, scissors = (0, 1, 2);
 
 julia> lose, draw, win = (0, 1, 2);
@@ -64,7 +64,7 @@ Return the strategy you should play to induce the desired `outcome` given the st
     - 2 = win
 
 # Examples
-```jldoctest; setup = :(using AoCElfTools.Day2: strategy)
+```jldoctest; setup = :(using AoCElfTools.Year2022.Day2: strategy)
 julia> rock, paper, scissors = (0, 1, 2);
 
 julia> lose, draw, win = (0, 1, 2);
@@ -96,7 +96,7 @@ Calculate the score given a strategy for `me` and the `outcome`.
     - 2 = win
 
 # Examples
-```jldoctest; setup = :(using AoCElfTools.Day2: score)
+```jldoctest; setup = :(using AoCElfTools.Year2022.Day2: score)
 julia> rock, paper, scissors = (0, 1, 2);
 
 julia> lose, draw, win = (0, 1, 2);
@@ -121,7 +121,7 @@ score(me, outcome) = 1 + me + 3 * outcome
 
 """
 # Examples
-```jldoctest; setup = :(using AoCElfTools.Day2: strategy)
+```jldoctest; setup = :(using AoCElfTools.Year2022.Day2: strategy)
 julia> rock, paper, scissors = (0, 1, 2);
 
 julia> lose, draw, win = (0, 1, 2);
@@ -146,7 +146,7 @@ Score a `round` assuming that the second element represents your own strategy.
 You get 1 point for playing rock, 2 points for playings paper, and 3 points for playing scissors, plus 3 points if you tie and 6 points if you win.
 
 # Examples
-```jldoctest; setup = :(using AoCElfTools.Day2: score1)
+```jldoctest; setup = :(using AoCElfTools.Year2022.Day2: score1)
 julia> decode(round) = (round[1] - 'A', round[3] - 'X');
 
 julia> "A Y" |> decode |> score1
@@ -173,7 +173,7 @@ Score a `round` assuming that the second element represents your desired outcome
 You get 1 point for playing rock, 2 points for playings paper, and 3 points for playing scissors, plus 3 points if you tie and 6 points if you win.
 
 # Examples
-```jldoctest; setup = :(using AoCElfTools.Day2: score2)
+```jldoctest; setup = :(using AoCElfTools.Year2022.Day2: score2)
 julia> decode(round) = (round[1] - 'A', round[3] - 'X');
 
 julia> "A Y" |> decode |> score2
