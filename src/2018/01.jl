@@ -60,6 +60,11 @@ function chronalcalibration(inputio; part=2)
   return (part1, part2)
 end
 
+function parseday(::Val{1}, ::Val{2018})
+  f(io) = io
+  return f
+end
+
 function solveday(::Val{1}, ::Val{2018})
   return chronalcalibration
 end

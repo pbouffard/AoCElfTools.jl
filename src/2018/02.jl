@@ -58,6 +58,10 @@ function commonletters(io)
   return ""
 end
 
+function parseday(::Val{2}, ::Val{2018})
+  f(io) = io
+end
+
 function solveday(::Val{2}, ::Val{2018})
   function f(io)
     part1 = boxids_checksum(io)
@@ -68,3 +72,5 @@ function solveday(::Val{2}, ::Val{2018})
 end
 
 end # module
+
+using .Day2

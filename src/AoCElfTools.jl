@@ -7,20 +7,25 @@ using Printf
 function parseday end
 function solveday end
 
+# Abstract functions to be extended for each year
+function daysavailable end
+
 # Include utility functions
 include("utils.jl")
 
 export samplepath
 export userpath
 
-const years = [2022]
-
 # Include solution code
 # for year in years
 #   include(joinpath(@__DIR__, string(year), string(year)) * ".jl")
 # end
 include("2018/2018.jl")
+using .Year2018
 include("2022/2022.jl")
+using .Year2022
+
+yearsavailable() = [2018, 2022]
 
 
 """
@@ -83,11 +88,21 @@ julia> open(parse_solve(1, 2022), "test/2022/data/sample/01.txt")
 """
 parse_solve(i::Int, year::Int) = solveday(Val(i), Val(year)) ∘ parseday(Val(i), Val(year))
 
+"""
+For given year, day, and input file, run the solver. Mostly a more straightforward syntax for `parse_solve`.
+"""
+solve_specific(year::Int, day::Int, inputfile) =  parse_solve(day, year)(open(inputfile))
+
 export parse_input
 export solve
 export parse_solve
 
 export parseday
 export solveday
+
+export solve_specific
+
+export yearsavailable
+export daysavailable
 
 end

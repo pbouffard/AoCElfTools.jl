@@ -26,8 +26,8 @@ i, istr = check_day(@__FILE__)
 
   # Checks from AoC setup
   # Part 1
-  (𝐋, 𝐑, 𝐃, 𝐔) = AoCElfTools.Day8.getbearings(sample)
-  isvisible = AoCElfTools.Day8.checkvisibility_direction(sample)
+  (𝐋, 𝐑, 𝐃, 𝐔) = AoCElfTools.Year2022.Day8.getbearings(sample)
+  isvisible = AoCElfTools.Year2022.Day8.checkvisibility_direction(sample)
 
   t = 7 # top-left 5
   @test isvisible(t, 𝐋)
@@ -66,14 +66,14 @@ i, istr = check_day(@__FILE__)
   @test isvisible(t, 𝐑)
 
   # bottom row
-  isvisible = AoCElfTools.Day8.checkvisibility(sample)
+  isvisible = AoCElfTools.Year2022.Day8.checkvisibility(sample)
   @test isvisible(14)
   @test !isvisible(9)
   @test !isvisible(19)
 
   # Part 2
-  treesviewed(i, direction) = AoCElfTools.Day8.treesviewed(i, direction, sample)
-  scenicscore = AoCElfTools.Day8.checkscenery(sample)
+  treesviewed(i, direction) = AoCElfTools.Year2022.Day8.treesviewed(i, direction, sample)
+  scenicscore = AoCElfTools.Year2022.Day8.checkscenery(sample)
 
   t = 12
   @test treesviewed(t, 𝐔) == 1

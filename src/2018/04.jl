@@ -52,6 +52,10 @@ function readrecord(io)
   return G
 end
 
+function parseday(::Val{4}, ::Val{2018})
+  f(io) = io
+end
+
 function solveday(::Val{4}, ::Val{2018})
   function f(io)
     G = readrecord(io)
@@ -78,3 +82,5 @@ function solveday(::Val{4}, ::Val{2018})
 end
 
 end # module
+
+using .Day4

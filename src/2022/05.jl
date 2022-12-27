@@ -1,7 +1,7 @@
 module Day5
 
-import ..parseday
-import ..solveday
+import ...parseday
+import ...solveday
 
 function parse_crates(input)
   lines = split(input, '\n')
