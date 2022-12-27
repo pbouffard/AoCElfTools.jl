@@ -8,7 +8,7 @@ using AoCElfTools
 using ProgressMeter
 
 function parse_commandline()
-  s = ArgParseSettings(
+  s = ArgParseSettings(;
     # prog="Advent Of Code",
     description="Run Advent Of Code puzzle solutions",
     # TODO print available years in epilog
@@ -16,20 +16,20 @@ function parse_commandline()
 
   @add_arg_table! s begin
     "--year", "--years", "-y"
-      help = "Year(s) to run puzzle(s) from, comma separated"
-      arg_type = Int
-      default = yearsavailable()
-      nargs =  '+'
+    help = "Year(s) to run puzzle(s) from, comma separated"
+    arg_type = Int
+    default = yearsavailable()
+    nargs = '+'
     "--day", "--days", "-d"
-      help = "Day(s) to run puzzles, for the given year(s), comma separated - if unspecified run all days of all years"
-      default = []
-      arg_type = Int
-      nargs = '+'
+    help = "Day(s) to run puzzles, for the given year(s), comma separated - if unspecified run all days of all years"
+    default = []
+    arg_type = Int
+    nargs = '+'
     "--input", "-i"
-      help = "When a single puzzle is selected, path to the input file to use"
-      default = ""
+    help = "When a single puzzle is selected, path to the input file to use"
+    default = ""
     "--all"
-      help = "Run all puzzles for all days and years"
+    help = "Run all puzzles for all days and years"
   end
 
   return parse_args(s)

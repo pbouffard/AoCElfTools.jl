@@ -91,7 +91,7 @@ parse_solve(i::Int, year::Int) = solveday(Val(i), Val(year)) ∘ parseday(Val(i)
 """
 For given year, day, and input file, run the solver. Mostly a more straightforward syntax for `parse_solve`.
 """
-solve_specific(year::Int, day::Int, inputfile) =  parse_solve(day, year)(open(inputfile))
+solve_specific(year::Int, day::Int, inputfile) = parse_solve(day, year)(open(inputfile))
 
 export parse_input
 export solve

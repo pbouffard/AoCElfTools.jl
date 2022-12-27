@@ -11,7 +11,7 @@ include("08.jl")
 
 import ..daysavailable
 
-daysavailable(::Val{2022}) = [1,2,3,4,5,6,7,8]
+daysavailable(::Val{2022}) = [1, 2, 3, 4, 5, 6, 7, 8]
 
 export daysavailable
 end # module
