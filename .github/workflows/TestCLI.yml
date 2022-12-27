@@ -1,0 +1,15 @@
+name: TestCLI
+on:
+  push:
+    branches:
+      - main
+    tags: ['*']
+  pull_request:
+jobs:
+  TestCLI:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Run via CLI - usage message
+      run: ./aoc.jl -h
+    - name: Run via CLI - all puzzles, all years
+      run: ./aoc.jl
