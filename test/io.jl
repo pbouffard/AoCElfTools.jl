@@ -54,7 +54,7 @@ onetotennewlines = ascii("1 2 3 4\n5 6 7 8\n9 10")
 onetotenint = 1:10
 
 negatives = ascii("1 -2 3 4 5 6 -7 8 -9 10")
-negativesnewlines = ascii("1 -2 3 4\n5 6 -7 8\n-9 10")
+negativesnewlines = ascii("1 -2 3 4\n5 6   -7 \t8\n-9 10") # also includes some extra spaces and a tab
 negativesint = [1, -2, 3, 4, 5, 6, -7, 8, -9, 10]
 
 @testset "eachint" begin
