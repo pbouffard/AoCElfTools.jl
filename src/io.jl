@@ -53,3 +53,59 @@ Base.IteratorSize(::Type{<:EachByte}) = Base.SizeUnknown()
 isdone(itr::EachByte, state...) = eof(itr.stream)
 
 
+struct EachInt{IOT<:IO}
+  stream::IOT
+  ondone::Function
+  EachInt(stream::IO=stdin; ondone::Function=()->nothing) = new{typeof(stream)}(stream, ondone)
+end
+
+"""
+    eachint(io::IO=stdin)
+    eachint(filename::AbstractString)
+
+Create an iterable `eachint` object that will yield integers from an I/O stream or a file containing
+space-separated integers. Iteration calls [`read`](@ref) on the stream argument repeatedly. When
+called with a file name, the file is opened once at the beginning of iteration and closed at the
+end. If iteration is interrupted, the file will be closed when the `EachInt` object is garbage
+collected.
+
+# Examples
+```jldoctest
+julia> open("my_file.txt", "w") do io
+  write(io, "0 1 2 3 4");
+end;
+
+julia> for int in eachint("my_file.txt")
+@show int
+end
+int = 0
+int = 1
+int = 2
+int = 3
+int = 4
+
+julia> rm("my_file.txt");
+````
+"""
+function eachint(stream::IO=stdin)
+  EachInt(stream)::EachInt
+end
+
+function eachint(filename::AbstractString)
+  bs = open(filename)
+  EachInt(bs, ondone=()->close(bs))::EachInt
+end
+
+function Base.iterate(itr::EachInt, state=nothing)
+  if eof(itr.stream)
+      return (itr.ondone(); nothing)
+  end
+
+  (parse(Int, readuntil(itr.stream, ' '))::Int, nothing)
+end
+
+eltype(::Type{<:EachInt}) = Int
+
+Base.IteratorSize(::Type{<:EachInt}) = Base.SizeUnknown()
+
+isdone(itr::EachInt, state...) = eof(itr.stream)

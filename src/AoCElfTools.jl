@@ -110,4 +110,5 @@ export daysavailable
   include("io.jl")
   export eachbyte
   export iterate
+  export eachint
 end
