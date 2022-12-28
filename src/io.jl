@@ -1,3 +1,4 @@
+using StringViews
 
 struct EachByte{IOT<:IO}
   stream::IOT
@@ -96,12 +97,34 @@ function eachint(filename::AbstractString)
   EachInt(bs, ondone=()->close(bs))::EachInt
 end
 
+const _whitespace = ['\n', '\r', '\t', ' '] .|> UInt8
 function Base.iterate(itr::EachInt, state=nothing)
-  if eof(itr.stream)
-      return (itr.ondone(); nothing)
+  function intresult()
+    sv = StringView(intchars)
+    (parse(Int, sv), nothing)
   end
 
-  (parse(Int, readuntil(itr.stream, ' '))::Int, nothing)
+  intchars = Vector{UInt8}()
+  while true
+    if eof(itr.stream)
+      if !isempty(intchars)
+        return intresult()
+      else
+        return (itr.ondone(); nothing)
+      end
+    end
+
+    c = read(itr.stream, UInt8)::UInt8
+    if c in _whitespace
+      if !isempty(intchars)
+        return intresult()
+      else
+        continue
+      end
+    end
+    
+    push!(intchars, c)
+  end
 end
 
 eltype(::Type{<:EachInt}) = Int
