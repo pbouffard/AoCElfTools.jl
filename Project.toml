@@ -13,6 +13,7 @@ LocalRegistry = "89398ba2-070a-4b16-a995-9893c55d93cf"
 MetaGraphs = "626554b9-1ddb-594c-aa3c-2596fe9399a5"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
+StringViews = "354b36f9-a18e-4713-926e-db85100087ba"
 
 [compat]
 julia = "1.8"
