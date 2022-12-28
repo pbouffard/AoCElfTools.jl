@@ -4,4 +4,4 @@ using Test
 using Printf
 
 include("io.jl")
-# include("puzzles.jl")
+include("puzzles.jl")
