@@ -66,19 +66,23 @@ function readnodes(it)
       if isempty(header.childvalues)
         value = sum(metadata)
       else
-        @show header.childvalues
+        @debug header.childvalues
         cvused = [i for i in metadata if i <= length(header.childvalues)]
-        @show cvused
-        value = sum(header.childvalues[i for i in metadata if i <= length(header.childvalues)])
+        @debug cvused
+        @debug header.childvalues[cvused]
+        value = sum(header.childvalues[cvused])
       end
 
-      push!(nodes, Node(header.name, metadata, value))
+      # @debug last(stack).nchildren
+      node = Node(header.name, metadata, value)
+      @debug "pushing $node"
+      push!(nodes, node)
       
       # record that the parent has had a child finalized
       if length(stack) > 0
         # maybe would be better just to make NodeHeader mutable?
         lastheader = pop!(stack)
-        pushfirst!(lastheader.childvalues, value)
+        push!(lastheader.childvalues, value)
         push!(stack, NodeHeader(lastheader.name, lastheader.nchildren - 1, lastheader.nmetadata, lastheader.childvalues))
       end
     end
@@ -107,12 +111,12 @@ end
 function solveday(::Val{8}, ::Val{2018})
   function f(it)
     nodes = readnodes(it)
-    for node in nodes
-      println(node)
-    end
+    # for node in nodes
+    #   println(node)
+    # end
     part1 = [sum(n.metadata) for n in nodes] |> sum
-
-    return (part1, nothing)
+    part2 = last(nodes).value
+    return (part1, part2)
   end
   
 end
