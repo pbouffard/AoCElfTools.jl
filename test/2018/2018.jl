@@ -90,7 +90,11 @@ _YEAR = 2018
   end
 
 
-  answers = Dict(
+  all_answers = Dict(
+    8 => Dict(
+      "sample" => (138, 66),
+      "pbouffard" => (47244, 17267),
+    ),
     7 => Dict(
       # "sample" => ("CABDFE", 15),
       "pbouffard" => ("BITRAQVSGUWKXYHMZPOCDLJNFE", 869),
@@ -106,7 +110,11 @@ _YEAR = 2018
     1 => Dict("pbouffard" => (425, 57538)),
   )
 
-  @testset verbose = true "Day $day" for (day, answers) in answers
+  # test_days = keys(all_answers)
+  test_days = [8, ]
+
+  @testset verbose = true "Day $day" for day in test_days
+    answers = all_answers[day]
     @testset verbose = true "$name" for (name, day_answers) in answers
       input_path = userpath(name, day, _YEAR)
       results = parse_solve(day, _YEAR)(open(input_path))
