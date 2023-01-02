@@ -91,10 +91,7 @@ _YEAR = 2018
 
 
   all_answers = Dict(
-    8 => Dict(
-      "sample" => (138, 66),
-      "pbouffard" => (47244, 17267),
-    ),
+    8 => Dict("sample" => (138, 66), "pbouffard" => (47244, 17267)),
     7 => Dict(
       # "sample" => ("CABDFE", 15),
       "pbouffard" => ("BITRAQVSGUWKXYHMZPOCDLJNFE", 869),
@@ -111,7 +108,7 @@ _YEAR = 2018
   )
 
   # test_days = keys(all_answers)
-  test_days = [8, ]
+  test_days = [8]
 
   @testset verbose = true "Day $day" for day in test_days
     answers = all_answers[day]

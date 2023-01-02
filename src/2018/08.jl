@@ -35,7 +35,7 @@ function parseday(::Val{8}, ::Val{2018})
   end
 end
 
-function readheader!(it, name::Int)::Union{NodeHeader, Nothing}
+function readheader!(it, name::Int)::Union{NodeHeader,Nothing}
   els = Iterators.take(it, 2) |> collect
   length(els) < 2 && return nothing
   return NodeHeader(name, els[1], els[2], [])
@@ -56,7 +56,7 @@ function readnodes(it)
     @debug nextname
     @debug stack
     @debug nodes
-    
+
     # if no children then collect the metadata and push to the nodes list
     while length(stack) > 0 && last(stack).nchildren == 0
       header = pop!(stack)
@@ -77,13 +77,21 @@ function readnodes(it)
       node = Node(header.name, metadata, value)
       @debug "pushing $node"
       push!(nodes, node)
-      
+
       # record that the parent has had a child finalized
       if length(stack) > 0
         # maybe would be better just to make NodeHeader mutable?
         lastheader = pop!(stack)
         push!(lastheader.childvalues, value)
-        push!(stack, NodeHeader(lastheader.name, lastheader.nchildren - 1, lastheader.nmetadata, lastheader.childvalues))
+        push!(
+          stack,
+          NodeHeader(
+            lastheader.name,
+            lastheader.nchildren - 1,
+            lastheader.nmetadata,
+            lastheader.childvalues,
+          ),
+        )
       end
     end
 
@@ -94,9 +102,8 @@ function readnodes(it)
       continue
     end
 
-    push!(stack,read_result)
+    push!(stack, read_result)
     nextname += 1
-    # isempty(stack) && break
   end
 
   @debug nodes
@@ -111,14 +118,11 @@ end
 function solveday(::Val{8}, ::Val{2018})
   function f(it)
     nodes = readnodes(it)
-    # for node in nodes
-    #   println(node)
-    # end
     part1 = [sum(n.metadata) for n in nodes] |> sum
     part2 = last(nodes).value
     return (part1, part2)
   end
-  
+
 end
 
 end # module

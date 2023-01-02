@@ -105,7 +105,7 @@ export solve_specific
 export yearsavailable
 export daysavailable
 
-  
+
 # Include IO functions
 include("io.jl")
 export eachbyte
