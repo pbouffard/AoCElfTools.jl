@@ -4,6 +4,7 @@ import ...parseday
 import ...solveday
 
 using AoCElfTools
+using MetaGraphs
 
 """
 --- Day 8: Memory Maneuver ---
@@ -12,15 +13,17 @@ using AoCElfTools
 
 struct Node
   # children::Vector{Node}
-  name::Char
+  name::Int
   metadata::Vector{Int}
+  value::Int
 end
 
 struct NodeHeader
-  name::Char
+  name::Int
   nchildren::Int
   # nsibling::Int
   nmetadata::Int
+  childvalues::Vector{Int}
   # depth::Int
 end
 
@@ -32,10 +35,10 @@ function parseday(::Val{8}, ::Val{2018})
   end
 end
 
-function readheader!(it, name::Char)::Union{NodeHeader, Nothing}
+function readheader!(it, name::Int)::Union{NodeHeader, Nothing}
   els = Iterators.take(it, 2) |> collect
   length(els) < 2 && return nothing
-  return NodeHeader(name, els[1], els[2])
+  return NodeHeader(name, els[1], els[2], [])
 end
 
 function readmetadata!(it, N)::Vector{Int}
@@ -48,7 +51,7 @@ function readnodes(it)
   nodes = Vector{Node}()
   stack = Vector{NodeHeader}()
   # (nchildren, nme tadata) = Iterators.take(it, 2)...
-  nextname = 'A'
+  nextname = 1
   while true
     @debug nextname
     @debug stack
@@ -60,12 +63,23 @@ function readnodes(it)
       @debug "popped $(header.name)"
       metadata = readmetadata!(it, header.nmetadata)
       @debug metadata
-      push!(nodes, Node(header.name, metadata))
+      if isempty(header.childvalues)
+        value = sum(metadata)
+      else
+        @show header.childvalues
+        cvused = [i for i in metadata if i <= length(header.childvalues)]
+        @show cvused
+        value = sum(header.childvalues[i for i in metadata if i <= length(header.childvalues)])
+      end
+
+      push!(nodes, Node(header.name, metadata, value))
       
       # record that the parent has had a child finalized
       if length(stack) > 0
+        # maybe would be better just to make NodeHeader mutable?
         lastheader = pop!(stack)
-        push!(stack, NodeHeader(lastheader.name, lastheader.nchildren - 1, lastheader.nmetadata))
+        pushfirst!(lastheader.childvalues, value)
+        push!(stack, NodeHeader(lastheader.name, lastheader.nchildren - 1, lastheader.nmetadata, lastheader.childvalues))
       end
     end
 
@@ -85,9 +99,17 @@ function readnodes(it)
   return nodes
 end
 
+function readgraph(it)
+  mg = MetaDiGraph()
+  set_indexing_prop!(mg, :name)
+end
+
 function solveday(::Val{8}, ::Val{2018})
   function f(it)
     nodes = readnodes(it)
+    for node in nodes
+      println(node)
+    end
     part1 = [sum(n.metadata) for n in nodes] |> sum
 
     return (part1, nothing)
