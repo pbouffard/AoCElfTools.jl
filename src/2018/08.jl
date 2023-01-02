@@ -19,6 +19,7 @@ end
 struct NodeHeader
   name::Char
   nchildren::Int
+  # nsibling::Int
   nmetadata::Int
   # depth::Int
 end
@@ -31,35 +32,67 @@ function parseday(::Val{8}, ::Val{2018})
   end
 end
 
-function solveday(::Val{8}, ::Val{2018})
-  function f(it)
-    nodes = Vector{Node}()
-    stack = Vector{NodeHeader}()
-    push!(stack, NodeHeader('A', Iterators.take(it, 2)...))
-    @show stack
-    nextname = 'B'
-    while !isempty(stack)
-      println()
-      @show nextname
-      @show stack
-      @show nodes
-      if last(stack).nchildren == 0
-        header = pop!(stack)
-        @info "popped $(header.name)"
-        metadata = Iterators.take(it, header.nmetadata) |> collect
-        @show metadata
-        push!(nodes, Node(header.name, metadata))
-      else
-        @info "pushing $nextname"
-        last(stack) = NodeHeader()
-        push!(stack, NodeHeader(nextname, Iterators.take(it, 2)...))
-        nextname += 1
+function readheader!(it, name::Char)::Union{NodeHeader, Nothing}
+  els = Iterators.take(it, 2) |> collect
+  length(els) < 2 && return nothing
+  return NodeHeader(name, els[1], els[2])
+end
+
+function readmetadata!(it, N)::Vector{Int}
+  return collect(Iterators.take(it, N))
+end
+
+endofints(it) = ismissing(Base.isdone(it)) || Base.isdone(it)
+
+function readnodes(it)
+  nodes = Vector{Node}()
+  stack = Vector{NodeHeader}()
+  # (nchildren, nme tadata) = Iterators.take(it, 2)...
+  nextname = 'A'
+  while true
+    @debug nextname
+    @debug stack
+    @debug nodes
+    
+    # if no children then collect the metadata and push to the nodes list
+    while length(stack) > 0 && last(stack).nchildren == 0
+      header = pop!(stack)
+      @debug "popped $(header.name)"
+      metadata = readmetadata!(it, header.nmetadata)
+      @debug metadata
+      push!(nodes, Node(header.name, metadata))
+      
+      # record that the parent has had a child finalized
+      if length(stack) > 0
+        lastheader = pop!(stack)
+        push!(stack, NodeHeader(lastheader.name, lastheader.nchildren - 1, lastheader.nmetadata))
       end
     end
 
-    (part1, part2) = (nothing, nothing)
-    return (part1, part2)
+    read_result = readheader!(it, nextname)
+    @debug read_result
+    if isnothing(read_result)
+      isempty(stack) && break
+      continue
+    end
+
+    push!(stack,read_result)
+    nextname += 1
+    # isempty(stack) && break
   end
+
+  @debug nodes
+  return nodes
+end
+
+function solveday(::Val{8}, ::Val{2018})
+  function f(it)
+    nodes = readnodes(it)
+    part1 = [sum(n.metadata) for n in nodes] |> sum
+
+    return (part1, nothing)
+  end
+  
 end
 
 end # module
