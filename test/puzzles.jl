@@ -8,5 +8,5 @@ function check_day(filepath)
 end
 
 @testset verbose = true for year in yearsavailable()
-    include(joinpath(@__DIR__, string(year), string(year)) * ".jl")
+  include(joinpath(@__DIR__, string(year), string(year)) * ".jl")
 end

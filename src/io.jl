@@ -3,7 +3,8 @@ using StringViews
 struct EachByte{IOT<:IO}
   stream::IOT
   ondone::Function
-  EachByte(stream::IO=stdin; ondone::Function=()->nothing) = new{typeof(stream)}(stream, ondone)
+  EachByte(stream::IO=stdin; ondone::Function=() -> nothing) =
+    new{typeof(stream)}(stream, ondone)
 end
 
 """
@@ -39,7 +40,7 @@ end
 
 function eachbyte(filename::AbstractString)
   bs = open(filename)
-  EachByte(bs, ondone=()->close(bs))::EachByte
+  EachByte(bs; ondone=() -> close(bs))::EachByte
 end
 
 function Base.iterate(itr::EachByte, state=nothing)
@@ -57,7 +58,8 @@ isdone(itr::EachByte, state...) = eof(itr.stream)
 struct EachInt{IOT<:IO}
   stream::IOT
   ondone::Function
-  EachInt(stream::IO=stdin; ondone::Function=()->nothing) = new{typeof(stream)}(stream, ondone)
+  EachInt(stream::IO=stdin; ondone::Function=() -> nothing) =
+    new{typeof(stream)}(stream, ondone)
 end
 
 """
@@ -94,7 +96,7 @@ end
 
 function eachint(filename::AbstractString)
   bs = open(filename)
-  EachInt(bs, ondone=()->close(bs))::EachInt
+  EachInt(bs; ondone=() -> close(bs))::EachInt
 end
 
 const _whitespace = ['\n', '\r', '\t', ' '] .|> UInt8
@@ -122,7 +124,7 @@ function Base.iterate(itr::EachInt, state=nothing)
         continue
       end
     end
-    
+
     push!(intchars, c)
   end
 end
